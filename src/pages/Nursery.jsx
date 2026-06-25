@@ -21,7 +21,7 @@ const Nursery = () => {
       desc: 'Nos serres climatisées abritent plusieurs milliers de plants aromatiques (menthe, basilic, citronnelle) prêts à la transplantation.'
     },
     {
-      url: 'https://images.unsplash.com/photo-1463123081488-729f608e9f5e?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/whatsapp_image_2026_05_27_at_19.12.37.webp',
       title: 'Jeunes plants de Moringa',
       desc: "Le Moringa Oleifera est multiplié en masse dans notre pépinière de Mboro grâce à une technique de bouturage optimisée pour les sols sableux."
     },
@@ -133,7 +133,7 @@ const Nursery = () => {
 
           <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', height: '440px', boxShadow: '0 10px 30px rgba(0,0,0,0.08)', position: 'relative' }}>
             <img
-              src="https://images.unsplash.com/photo-1463123081488-729f608e9f5e?q=80&w=800&auto=format&fit=crop"
+              src="/images/whatsapp_image_2026_05_27_at_19.12.37.webp"
               alt="Jeunes plants de pépinière"
               style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
               onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
