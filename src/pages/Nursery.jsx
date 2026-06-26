@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import { 
   ShoppingCart, Leaf, Droplets, Sun, Info, 
-  Sprout, ChevronLeft, ChevronRight, ArrowRight, CheckCircle2
+  Sprout, ChevronLeft, ChevronRight, ArrowRight, CheckCircle2,
+  Search, X
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -12,6 +13,8 @@ const Nursery = () => {
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [waterFilter, setWaterFilter] = useState('all');
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedPlant, setSelectedPlant] = useState(null);
 
   // Galerie de photos thématiques pépinière agroécologique
   const photos = [
@@ -61,7 +64,9 @@ const Nursery = () => {
     const matchLocation = activeFermeFilter === 'all' || plant.location === 'both' || plant.location === activeFermeFilter;
     const matchCategory = categoryFilter === 'all' || plant.category === categoryFilter;
     const matchWater = waterFilter === 'all' || plant.water === waterFilter;
-    return matchLocation && matchCategory && matchWater;
+    const matchSearch = plant.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        plant.description.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchLocation && matchCategory && matchWater && matchSearch;
   });
 
   return (
@@ -210,16 +215,45 @@ const Nursery = () => {
 
           {/* Barre de filtres */}
           <div className="card" style={{ padding: '24px 28px', marginBottom: '40px', display: 'flex', gap: '24px', flexWrap: 'wrap', alignItems: 'center', backgroundColor: 'white', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.04)' }}>
+            {/* Recherche textuelle */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexGrow: 1, minWidth: '260px' }}>
+              <div style={{ position: 'relative', width: '100%' }}>
+                <Search size={18} color="var(--text-muted)" style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }} />
+                <input
+                  type="text"
+                  placeholder="Rechercher une plante (ex: moringa, menthe)..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '10px 14px 10px 40px',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: 'var(--radius-sm)',
+                    fontSize: '0.95rem',
+                    outline: 'none',
+                    boxSizing: 'border-box'
+                  }}
+                />
+                {searchTerm && (
+                  <button 
+                    onClick={() => setSearchTerm('')} 
+                    style={{ position: 'absolute', right: '14px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', padding: 0 }}
+                  >
+                    <X size={16} color="var(--text-muted)" />
+                  </button>
+                )}
+              </div>
+            </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <Leaf size={20} color="var(--primary)" />
-              <select className="form-control" style={{ width: 'auto', minWidth: '220px', padding: '10px 14px', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)' }} value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
+              <select className="form-control" style={{ width: 'auto', minWidth: '200px', padding: '10px 14px', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)' }} value={categoryFilter} onChange={(e) => setCategoryFilter(e.target.value)}>
                 <option value="all">Toutes les catégories</option>
                 {categories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
               </select>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <Droplets size={20} color="#2196F3" />
-              <select className="form-control" style={{ width: 'auto', minWidth: '220px', padding: '10px 14px', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)' }} value={waterFilter} onChange={(e) => setWaterFilter(e.target.value)}>
+              <select className="form-control" style={{ width: 'auto', minWidth: '200px', padding: '10px 14px', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)' }} value={waterFilter} onChange={(e) => setWaterFilter(e.target.value)}>
                 <option value="all">Tous besoins en eau</option>
                 <option value="faible">Faible (Résistant sécheresse)</option>
                 <option value="moyen">Moyen</option>
@@ -236,7 +270,7 @@ const Nursery = () => {
             <div className="grid-3" style={{ gap: '30px' }}>
               {filteredPlants.map(plant => (
                 <div key={plant.id} className="card hover-scale" style={{ border: 'none', padding: 0, overflow: 'hidden', boxShadow: '0 8px 28px rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column' }}>
-                  <div className="card-img-wrapper" style={{ height: '240px' }}>
+                  <div className="card-img-wrapper" style={{ height: '240px', cursor: 'pointer' }} onClick={() => setSelectedPlant(plant)}>
                     <img src={plant.image} alt={plant.name} className="card-img" />
                     <div style={{ position: 'absolute', top: '16px', right: '16px', display: 'flex', gap: '6px' }}>
                       {(plant.location === 'mboro' || plant.location === 'both') && (
@@ -251,7 +285,7 @@ const Nursery = () => {
                     <span style={{ fontSize: '0.85rem', color: 'var(--primary)', fontWeight: 700, marginBottom: '8px', display: 'block', letterSpacing: '0.5px' }}>
                       {plant.category}
                     </span>
-                    <h3 style={{ fontSize: '1.35rem', marginBottom: '14px', color: 'var(--text-charcoal)', lineHeight: '1.3' }}>{plant.name}</h3>
+                    <h3 style={{ fontSize: '1.35rem', marginBottom: '14px', color: 'var(--text-charcoal)', lineHeight: '1.3', cursor: 'pointer' }} onClick={() => setSelectedPlant(plant)}>{plant.name}</h3>
                     <p style={{ fontSize: '0.95rem', marginBottom: '20px', flexGrow: 1, color: 'var(--text-muted)', lineHeight: 1.6 }}>
                       {plant.description}
                     </p>
@@ -266,19 +300,28 @@ const Nursery = () => {
                         <Info size={16} style={{ marginTop: '2px', flexShrink: 0 }} /> <span><em>{plant.tips}</em></span>
                       </div>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto', borderTop: '1px solid var(--border-color)', paddingTop: '18px' }}>
-                      <span style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-charcoal)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto', borderTop: '1px solid var(--border-color)', paddingTop: '18px', gap: '8px' }}>
+                      <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-charcoal)', whiteSpace: 'nowrap' }}>
                         {plant.price.toLocaleString('fr-FR')} FCFA
                       </span>
-                      <button
-                        className="btn btn-primary"
-                        style={{ padding: '10px 20px', display: 'flex', alignItems: 'center', gap: '8px' }}
-                        onClick={() => addToCart(plant, 'plant')}
-                        disabled={plant.stock === 0}
-                      >
-                        <ShoppingCart size={18} />
-                        {plant.stock > 0 ? 'Ajouter' : 'Rupture'}
-                      </button>
+                      <div style={{ display: 'flex', gap: '8px' }}>
+                        <button
+                          className="btn btn-secondary"
+                          style={{ padding: '8px 12px', display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '0.85rem' }}
+                          onClick={() => setSelectedPlant(plant)}
+                        >
+                          <Info size={14} /> Détails
+                        </button>
+                        <button
+                          className="btn btn-primary"
+                          style={{ padding: '8px 14px', display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem' }}
+                          onClick={() => addToCart(plant, 'plant')}
+                          disabled={plant.stock === 0}
+                        >
+                          <ShoppingCart size={14} />
+                          {plant.stock > 0 ? 'Ajouter' : 'Rupture'}
+                        </button>
+                      </div>
                     </div>
                     <div style={{ textAlign: 'right', marginTop: '10px', fontSize: '0.82rem', fontWeight: 700, color: plant.stock < 20 ? '#D32F2F' : 'var(--text-muted)' }}>
                       {plant.stock > 0 ? `${plant.stock} en stock` : 'Bientôt disponible'}
@@ -326,6 +369,134 @@ const Nursery = () => {
         </div>
 
       </div>
+
+      {/* ─── MODAL DÉTAILS DE LA PLANTE ─── */}
+      {selectedPlant && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          backgroundColor: 'rgba(15, 23, 42, 0.45)',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          zIndex: 9999,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '20px',
+          boxSizing: 'border-box'
+        }}
+        onClick={() => setSelectedPlant(null)}
+        >
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '24px',
+            maxWidth: '800px',
+            width: '100%',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+            position: 'relative',
+            boxSizing: 'border-box'
+          }}
+          onClick={(e) => e.stopPropagation()}
+          >
+            {/* Bouton de fermeture */}
+            <button
+              onClick={() => setSelectedPlant(null)}
+              style={{
+                position: 'absolute',
+                top: '20px',
+                right: '20px',
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                border: '1px solid var(--border-color)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                zIndex: 10,
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                transition: 'transform 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            >
+              <X size={20} color="var(--text-charcoal)" />
+            </button>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 0 }}>
+              {/* Image de la plante */}
+              <div style={{ height: '320px', minHeight: '100%', position: 'relative' }}>
+                <img
+                  src={selectedPlant.image}
+                  alt={selectedPlant.name}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                />
+                <div style={{ position: 'absolute', top: '20px', left: '20px', display: 'flex', gap: '6px' }}>
+                  {(selectedPlant.location === 'mboro' || selectedPlant.location === 'both') && (
+                    <span className="badge badge-mboro" style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>Mboro</span>
+                  )}
+                  {(selectedPlant.location === 'ngaparou' || selectedPlant.location === 'both') && (
+                    <span className="badge badge-ngaparou" style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>Ngaparou</span>
+                  )}
+                </div>
+              </div>
+
+              {/* Contenu détaillé */}
+              <div style={{ padding: '36px 32px', display: 'flex', flexDirection: 'column' }}>
+                <span style={{ fontSize: '0.85rem', color: 'var(--primary)', fontWeight: 700, marginBottom: '8px', display: 'block', letterSpacing: '0.5px' }}>
+                  {selectedPlant.category}
+                </span>
+                <h2 style={{ fontSize: '1.8rem', color: 'var(--text-charcoal)', marginBottom: '16px', lineHeight: '1.2' }}>{selectedPlant.name}</h2>
+                
+                <p style={{ fontSize: '1rem', color: 'var(--text-muted)', lineHeight: '1.7', marginBottom: '24px' }}>
+                  {selectedPlant.description}
+                </p>
+
+                {/* Fiche technique de culture */}
+                <div style={{ backgroundColor: '#F4FAF4', padding: '18px', borderRadius: '16px', marginBottom: '28px', display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '0.92rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--text-charcoal)' }}>
+                    <Sun size={18} color="#F57C00" /> <span><strong>Besoins en soleil :</strong> {formatSun(selectedPlant.sun)}</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--text-charcoal)' }}>
+                    <Droplets size={18} color="#2196F3" /> <span><strong>Besoins en arrosage :</strong> {formatWater(selectedPlant.water)}</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--text-charcoal)' }}>
+                    <Leaf size={18} color="var(--primary)" /> <span><strong>Type de sol idéal :</strong> {selectedPlant.soil}</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', color: 'var(--primary)', marginTop: '4px', borderTop: '1px solid rgba(46, 125, 50, 0.1)', paddingTop: '10px' }}>
+                    <Info size={18} style={{ marginTop: '2px', flexShrink: 0 }} /> <span><strong>Conseils de culture :</strong> <em>{selectedPlant.tips}</em></span>
+                  </div>
+                </div>
+
+                {/* Prix et action */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto', borderTop: '1px solid var(--border-color)', paddingTop: '20px' }}>
+                  <span style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--text-charcoal)' }}>
+                    {selectedPlant.price.toLocaleString('fr-FR')} FCFA
+                  </span>
+                  
+                  <div style={{ display: 'flex', gap: '12px' }}>
+                    <button
+                      className="btn btn-primary"
+                      style={{ padding: '12px 28px', display: 'flex', alignItems: 'center', gap: '8px', borderRadius: 'var(--radius-full)', fontSize: '1rem' }}
+                      onClick={() => { addToCart(selectedPlant, 'plant'); setSelectedPlant(null); }}
+                      disabled={selectedPlant.stock === 0}
+                    >
+                      <ShoppingCart size={20} />
+                      {selectedPlant.stock > 0 ? 'Ajouter au panier' : 'Rupture'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

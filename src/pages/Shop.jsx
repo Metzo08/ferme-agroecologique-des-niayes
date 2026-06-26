@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import { 
   ShoppingCart, Tag, Filter, CheckCircle, 
-  ChevronLeft, ChevronRight, ArrowRight, Sparkles, Package, Leaf
+  ChevronLeft, ChevronRight, ArrowRight, Sparkles, Package, Leaf,
+  Search, X, Info
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -10,6 +11,8 @@ const Shop = () => {
   const { equipment, addToCart, activeFermeFilter } = useContext(AppContext);
   const [categoryFilter, setCategoryFilter] = useState('all');
   const [activePhotoIdx, setActivePhotoIdx] = useState(0);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   // Galerie de photos thématiques boutique agricole
   const photos = [
@@ -40,9 +43,12 @@ const Shop = () => {
   const categories = [...new Set(siteEquipment.map(item => item.category))].filter(Boolean);
   const isCategoryAvailable = categoryFilter === 'all' || categories.includes(categoryFilter);
   const activeCategory = isCategoryAvailable ? categoryFilter : 'all';
-  const filteredEquipment = siteEquipment.filter(item =>
-    activeCategory === 'all' || item.category === activeCategory
-  );
+  const filteredEquipment = siteEquipment.filter(item => {
+    const matchCategory = activeCategory === 'all' || item.category === activeCategory;
+    const matchSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        item.description.toLowerCase().includes(searchTerm.toLowerCase());
+    return matchCategory && matchSearch;
+  });
 
   return (
     <div style={{ backgroundColor: 'var(--bg-sand)', minHeight: '100vh', paddingBottom: '80px' }}>
@@ -178,6 +184,36 @@ const Shop = () => {
             <p style={{ color: 'var(--text-muted)', marginTop: '10px' }}>Filtrez par catégorie pour trouver ce dont vous avez besoin.</p>
           </div>
 
+          {/* Barre de recherche boutique */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px', backgroundColor: 'white', padding: '16px 20px', borderRadius: '16px', boxShadow: '0 4px 15px rgba(0,0,0,0.02)' }}>
+            <div style={{ position: 'relative', width: '100%' }}>
+              <Search size={18} color="var(--text-muted)" style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }} />
+              <input
+                type="text"
+                placeholder="Rechercher un équipement ou produit (ex: compost, ruche, savon)..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '12px 14px 12px 42px',
+                  border: '1px solid var(--border-color)',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: '0.98rem',
+                  outline: 'none',
+                  boxSizing: 'border-box'
+                }}
+              />
+              {searchTerm && (
+                <button 
+                  onClick={() => setSearchTerm('')} 
+                  style={{ position: 'absolute', right: '14px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', padding: 0 }}
+                >
+                  <X size={16} color="var(--text-muted)" />
+                </button>
+              )}
+            </div>
+          </div>
+
           {/* Filtres par catégorie */}
           <div style={{ display: 'flex', gap: '12px', marginBottom: '36px', overflowX: 'auto', paddingBottom: '12px', flexWrap: 'wrap' }}>
             <button
@@ -204,7 +240,7 @@ const Shop = () => {
             <div className="grid-4">
               {filteredEquipment.map(item => (
                 <div key={item.id} className="card hover-scale" style={{ display: 'flex', flexDirection: 'column', border: 'none', padding: 0, overflow: 'hidden', boxShadow: '0 8px 24px rgba(0,0,0,0.06)' }}>
-                  <div style={{ height: '220px', overflow: 'hidden', position: 'relative', backgroundColor: '#F5F5F5' }}>
+                  <div style={{ height: '220px', overflow: 'hidden', position: 'relative', backgroundColor: '#F5F5F5', cursor: 'pointer' }} onClick={() => setSelectedProduct(item)}>
                     {item.image ? (
                       <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }}
                         onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.06)'}
@@ -227,22 +263,32 @@ const Shop = () => {
                     <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 700, marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
                       {item.category}
                     </span>
-                    <h4 style={{ marginBottom: '10px', fontSize: '1.1rem', color: 'var(--text-charcoal)', lineHeight: '1.3' }}>{item.name}</h4>
+                    <h4 style={{ marginBottom: '10px', fontSize: '1.1rem', color: 'var(--text-charcoal)', lineHeight: '1.3', cursor: 'pointer' }} onClick={() => setSelectedProduct(item)}>{item.name}</h4>
                     <p style={{ fontSize: '0.88rem', marginBottom: '18px', flexGrow: 1, color: 'var(--text-muted)', lineHeight: 1.5 }}>{item.description}</p>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto', borderTop: '1px solid var(--border-color)', paddingTop: '16px' }}>
-                      <span style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-charcoal)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto', borderTop: '1px solid var(--border-color)', paddingTop: '16px', gap: '4px' }}>
+                      <span style={{ fontSize: '1.05rem', fontWeight: 800, color: 'var(--text-charcoal)', whiteSpace: 'nowrap' }}>
                         {item.price.toLocaleString('fr-FR')} FCFA
                       </span>
-                      <button
-                        className="btn btn-primary"
-                        style={{ padding: '9px 16px', borderRadius: 'var(--radius-full)', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem' }}
-                        onClick={() => addToCart(item, 'equipment')}
-                        disabled={item.stock === 0}
-                        title="Ajouter au panier"
-                      >
-                        <ShoppingCart size={16} />
-                        {item.stock > 0 ? 'Ajouter' : 'Rupture'}
-                      </button>
+                      <div style={{ display: 'flex', gap: '6px' }}>
+                        <button
+                          className="btn btn-secondary"
+                          style={{ padding: '8px 10px', display: 'inline-flex', alignItems: 'center', gap: '4px', fontSize: '0.8rem' }}
+                          onClick={() => setSelectedProduct(item)}
+                          title="Voir les détails"
+                        >
+                          <Info size={14} /> Details
+                        </button>
+                        <button
+                          className="btn btn-primary"
+                          style={{ padding: '8px 12px', borderRadius: 'var(--radius-full)', display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.8rem' }}
+                          onClick={() => addToCart(item, 'equipment')}
+                          disabled={item.stock === 0}
+                          title="Ajouter au panier"
+                        >
+                          <ShoppingCart size={14} />
+                          {item.stock > 0 ? 'Ajouter' : 'Rupture'}
+                        </button>
+                      </div>
                     </div>
                     {item.stock > 0 ? (
                       <span style={{ fontSize: '0.8rem', color: 'var(--primary)', marginTop: '8px', display: 'flex', alignItems: 'center', gap: '4px', fontWeight: 600 }}>
@@ -292,6 +338,132 @@ const Shop = () => {
         </div>
 
       </div>
+
+      {/* ─── MODAL DÉTAILS DU PRODUIT ─── */}
+      {selectedProduct && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          backgroundColor: 'rgba(15, 23, 42, 0.45)',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          zIndex: 9999,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '20px',
+          boxSizing: 'border-box'
+        }}
+        onClick={() => setSelectedProduct(null)}
+        >
+          <div style={{
+            backgroundColor: 'white',
+            borderRadius: '24px',
+            maxWidth: '800px',
+            width: '100%',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+            position: 'relative',
+            boxSizing: 'border-box'
+          }}
+          onClick={(e) => e.stopPropagation()}
+          >
+            {/* Bouton de fermeture */}
+            <button
+              onClick={() => setSelectedProduct(null)}
+              style={{
+                position: 'absolute',
+                top: '20px',
+                right: '20px',
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                border: '1px solid var(--border-color)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                zIndex: 10,
+                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                transition: 'transform 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            >
+              <X size={20} color="var(--text-charcoal)" />
+            </button>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 0 }}>
+              {/* Image du produit */}
+              <div style={{ height: '320px', minHeight: '100%', position: 'relative', backgroundColor: '#F5F5F5' }}>
+                {selectedProduct.image ? (
+                  <img
+                    src={selectedProduct.image}
+                    alt={selectedProduct.name}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                ) : (
+                  <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <Package size={80} color="var(--primary)" />
+                  </div>
+                )}
+                <div style={{ position: 'absolute', top: '20px', left: '20px', display: 'flex', gap: '6px' }}>
+                  {(selectedProduct.location === 'mboro' || selectedProduct.location === 'both') && (
+                    <span className="badge badge-mboro" style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>Mboro</span>
+                  )}
+                  {(selectedProduct.location === 'ngaparou' || selectedProduct.location === 'both') && (
+                    <span className="badge badge-ngaparou" style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>Ngaparou</span>
+                  )}
+                </div>
+              </div>
+
+              {/* Contenu détaillé */}
+              <div style={{ padding: '36px 32px', display: 'flex', flexDirection: 'column' }}>
+                <span style={{ fontSize: '0.85rem', color: '#1565C0', fontWeight: 700, marginBottom: '8px', display: 'block', letterSpacing: '0.5px', textTransform: 'uppercase' }}>
+                  {selectedProduct.category}
+                </span>
+                <h2 style={{ fontSize: '1.8rem', color: 'var(--text-charcoal)', marginBottom: '16px', lineHeight: '1.2' }}>{selectedProduct.name}</h2>
+                
+                <p style={{ fontSize: '1rem', color: 'var(--text-muted)', lineHeight: '1.7', marginBottom: '24px' }}>
+                  {selectedProduct.description}
+                </p>
+
+                {/* Spécifications techniques */}
+                {selectedProduct.specs && (
+                  <div style={{ backgroundColor: '#F4F7FA', padding: '18px', borderRadius: '16px', marginBottom: '28px', fontSize: '0.92rem' }}>
+                    <h4 style={{ marginBottom: '10px', color: '#1565C0', fontSize: '1.05rem' }}>Caractéristiques du produit :</h4>
+                    <p style={{ margin: 0, color: 'var(--text-charcoal)', lineHeight: 1.5 }}>{selectedProduct.specs}</p>
+                  </div>
+                )}
+
+                {/* Prix et action */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto', borderTop: '1px solid var(--border-color)', paddingTop: '20px' }}>
+                  <span style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--text-charcoal)' }}>
+                    {selectedProduct.price.toLocaleString('fr-FR')} FCFA
+                  </span>
+                  
+                  <div style={{ display: 'flex', gap: '12px' }}>
+                    <button
+                      className="btn btn-primary"
+                      style={{ padding: '12px 28px', display: 'flex', alignItems: 'center', gap: '8px', borderRadius: 'var(--radius-full)', fontSize: '1rem' }}
+                      onClick={() => { addToCart(selectedProduct, 'equipment'); setSelectedProduct(null); }}
+                      disabled={selectedProduct.stock === 0}
+                    >
+                      <ShoppingCart size={20} />
+                      {selectedProduct.stock > 0 ? 'Ajouter au panier' : 'Rupture'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
