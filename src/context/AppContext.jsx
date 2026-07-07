@@ -14,7 +14,7 @@ const INITIAL_PLANTS = [
     soil: 'sableux-riche',
     water: 'fort',
     sun: 'mi-ombre',
-    image: 'https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?q=80&w=600&auto=format&fit=crop',
+    image: '/images/menthe_poivree.jpg',
     description: 'Plante aromatique incontournable pour le thé traditionnel sénégalais (Ataya). Très facile à cultiver.',
     tips: 'Arroser abondamment matin et soir. Préfère un sol riche en compost.'
   },
@@ -28,7 +28,7 @@ const INITIAL_PLANTS = [
     soil: 'sableux',
     water: 'faible',
     sun: 'plein-soleil',
-    image: 'https://images.unsplash.com/photo-1515150144380-bca9f1650ed9?q=80&w=600&auto=format&fit=crop',
+    image: '/images/moringa.jpg',
     description: 'Arbre miracle de l\'agroécologie sénégalaise. Toutes les parties (feuilles, graines) sont comestibles et nutritives.',
     tips: 'Supporte très bien la sécheresse. Arrosage modéré nécessaire uniquement au départ.'
   },
@@ -42,7 +42,7 @@ const INITIAL_PLANTS = [
     soil: 'drainé',
     water: 'moyen',
     sun: 'plein-soleil',
-    image: 'https://images.unsplash.com/photo-1520690212-07a8229007cb?q=80&w=600&auto=format&fit=crop',
+    image: '/images/bougainvillier.jpg',
     description: 'Magnifique arbuste grimpant pour colorer les portails, pergolas et jardins à Ngaparou.',
     tips: 'Tailler après la floraison. Aime la chaleur et le soleil direct pour fleurir.'
   },
@@ -56,7 +56,7 @@ const INITIAL_PLANTS = [
     soil: 'sableux-profond',
     water: 'moyen',
     sun: 'plein-soleil',
-    image: 'https://images.unsplash.com/photo-1553134988-5622b1a6b7f1?q=80&w=600&auto=format&fit=crop',
+    image: '/images/manguier_kent.jpg',
     description: 'Manguier d\'excellente qualité produisant de grosses mangues juteuses et sans fibres. Idéal pour les vergers des Niayes.',
     tips: 'Le plant greffé produit dès sa 2ème ou 3ème année. Fertiliser au compost à chaque début d\'hivernage.'
   },
@@ -70,7 +70,7 @@ const INITIAL_PLANTS = [
     soil: 'drainé',
     water: 'moyen',
     sun: 'plein-soleil',
-    image: 'https://images.unsplash.com/photo-1590502593747-42a996133562?q=80&w=600&auto=format&fit=crop',
+    image: '/images/citronnier_gallet.jpg',
     description: 'Citronnier très productif donnant de petits citrons juteux et parfumés tout au long de l\'année au Sénégal.',
     tips: 'Sensible aux vents salins directs. Bien pailler le pied pour garder l\'humidité.'
   },
@@ -84,7 +84,7 @@ const INITIAL_PLANTS = [
     soil: 'sableux-salin',
     water: 'faible',
     sun: 'plein-soleil',
-    image: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=600&auto=format&fit=crop',
+    image: '/images/filaos.jpg',
     description: 'Arbre à croissance rapide, excellent pour fixer les dunes côtières de Mboro/Khondio et créer des brise-vents.',
     tips: 'Parfait pour protéger vos cultures maraîchères contre les vents côtiers chargés de sel.'
   },
@@ -98,7 +98,7 @@ const INITIAL_PLANTS = [
     soil: 'drainé',
     water: 'faible',
     sun: 'plein-soleil',
-    image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=600&auto=format&fit=crop',
+    image: '/images/flamboyant.jpg',
     description: 'Arbre d\'ombrage majestueux qui produit une floraison rouge spectaculaire en début d\'hivernage.',
     tips: 'Fournit un ombrage large idéal pour les espaces publics et les parkings de Ngaparou.'
   },
@@ -112,7 +112,7 @@ const INITIAL_PLANTS = [
     soil: 'sableux',
     water: 'faible',
     sun: 'plein-soleil',
-    image: 'https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?q=80&w=600&auto=format&fit=crop',
+    image: '/images/aloe_vera.jpg',
     description: 'Plante succulente aux propriétés médicinales et cosmétiques exceptionnelles pour le traitement de la peau.',
     tips: 'Ne jamais laisser d\'eau stagner dans la coupelle. Arroser uniquement quand la terre est totalement sèche.'
   },
@@ -126,7 +126,7 @@ const INITIAL_PLANTS = [
     soil: 'sableux-riche',
     water: 'fort',
     sun: 'mi-ombre',
-    image: 'https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?q=80&w=600&auto=format&fit=crop',
+    image: '/images/chanvre_eau.jpg',
     description: 'Cette plante herbacée vivace dicotylédone est une graminée appartenant à la famille des lamiacées. Elle améliore la mémoire, favorise la prise de masse musculaire et prévient les maladies cardiovasculaires.',
     tips: 'Ses feuilles séchées peuvent être ajoutées à des infusions pour réguler la pression artérielle et le transit.'
   },
@@ -140,7 +140,7 @@ const INITIAL_PLANTS = [
     soil: 'drainé',
     water: 'moyen',
     sun: 'plein-soleil',
-    image: 'https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?q=80&w=600&auto=format&fit=crop',
+    image: '/images/sauge_officinale.jpg',
     description: 'La sauge officinale, scientifiquement connue sous le nom de Salvia officinalis, est une plante aromatique et médicinale appréciée pour ses propriétés antiseptiques, anti-inflammatoires et antioxydantes.',
     tips: 'Les feuilles de sauge séchées peuvent être infusées dans de l\'eau chaude pour préparer une tisane digestive.'
   },
@@ -154,7 +154,7 @@ const INITIAL_PLANTS = [
     soil: 'drainé',
     water: 'moyen',
     sun: 'plein-soleil',
-    image: 'https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?q=80&w=600&auto=format&fit=crop',
+    image: '/images/achillee.jpg',
     description: 'L\'achillée millefeuille est une plante herbacée vivace de la famille des astéracées, reconnue pour ses feuilles finement découpées et ses effets cicatrisants, hémostatiques et digestifs.',
     tips: 'Préparer une infusion avec les fleurs séchées ou diluer quelques gouttes de teinture mère dans de l\'eau.'
   },
@@ -422,17 +422,17 @@ export const AppProvider = ({ children }) => {
     });
 
     return merged.map(p => {
-      if (p.id === 'p1') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.36.webp';
-      if (p.id === 'p2') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.37.webp';
-      if (p.id === 'p3') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.38.webp';
-      if (p.id === 'p4') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.40.webp';
-      if (p.id === 'p5') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.41.webp';
-      if (p.id === 'p6') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.45.webp';
-      if (p.id === 'p7') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.42.webp';
-      if (p.id === 'p8') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.43.webp';
-      if (p.id === 'p9') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.08.webp';
-      if (p.id === 'p10') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.09.webp';
-      if (p.id === 'p11') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.10.webp';
+      if (p.id === 'p1') p.image = '/images/menthe_poivree.jpg';
+      if (p.id === 'p2') p.image = '/images/moringa.jpg';
+      if (p.id === 'p3') p.image = '/images/bougainvillier.jpg';
+      if (p.id === 'p4') p.image = '/images/manguier_kent.jpg';
+      if (p.id === 'p5') p.image = '/images/citronnier_gallet.jpg';
+      if (p.id === 'p6') p.image = '/images/filaos.jpg';
+      if (p.id === 'p7') p.image = '/images/flamboyant.jpg';
+      if (p.id === 'p8') p.image = '/images/aloe_vera.jpg';
+      if (p.id === 'p9') p.image = '/images/chanvre_eau.jpg';
+      if (p.id === 'p10') p.image = '/images/sauge_officinale.jpg';
+      if (p.id === 'p11') p.image = '/images/achillee.jpg';
       if (p.id === 'p12') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.24.webp';
       if (p.id === 'p13') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.25.webp';
       if (p.id === 'p14') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.26.webp';
@@ -442,7 +442,7 @@ export const AppProvider = ({ children }) => {
       
       // Fix broken unsplash links for user-added plants by replacing them with a default local image
       if (p.image && p.image.includes('unsplash.com')) {
-         p.image = '/images/whatsapp_image_2026_05_27_at_19.12.36.webp'; // Default fallback
+         p.image = '/images/menthe_poivree.jpg'; // Default fallback
       }
       return p;
     });

@@ -19,22 +19,22 @@ const Nursery = () => {
   // Galerie de photos thématiques pépinière agroécologique
   const photos = [
     {
-      url: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/menthe_poivree.jpg',
       title: 'Plants aromatiques sous serre',
       desc: 'Nos serres climatisées abritent plusieurs milliers de plants aromatiques (menthe, basilic, citronnelle) prêts à la transplantation.'
     },
     {
-      url: '/images/whatsapp_image_2026_05_27_at_19.12.37.webp',
+      url: '/images/moringa.jpg',
       title: 'Jeunes plants de Moringa',
       desc: "Le Moringa Oleifera est multiplié en masse dans notre pépinière de Mboro grâce à une technique de bouturage optimisée pour les sols sableux."
     },
     {
-      url: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/manguier_kent.jpg',
       title: 'Arbres fruitiers greffés',
       desc: "Nos manguiers, agrumes et goyaviers sont produits par greffage sur porte-greffes locaux pour maximiser l'adaptation climatique."
     },
     {
-      url: 'https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/filaos.jpg',
       title: 'Plants de reboisement',
       desc: "Production massive de plants forestiers (Filao, Eucalyptus, Casuarina) destinés aux projets de fixation des dunes des Niayes."
     }
@@ -138,7 +138,7 @@ const Nursery = () => {
 
           <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', height: '440px', boxShadow: '0 10px 30px rgba(0,0,0,0.08)', position: 'relative' }}>
             <img
-              src="/images/whatsapp_image_2026_05_27_at_19.12.37.webp"
+              src="/images/moringa.jpg"
               alt="Jeunes plants de pépinière"
               style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
               onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
