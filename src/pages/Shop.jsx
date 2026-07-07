@@ -17,17 +17,17 @@ const Shop = () => {
   // Galerie de photos thématiques boutique agricole
   const photos = [
     {
-      url: 'https://images.unsplash.com/photo-1586771107445-d3ca888129ff?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/irrigation.jpg',
       title: 'Outils manuels certifiés bio',
       desc: 'Nos outils sont sélectionnés pour leur durabilité et leur ergonomie, adaptés aux sols sableux et latéritiques des Niayes.'
     },
     {
-      url: 'https://images.unsplash.com/photo-1592824834252-b65a2370f403?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/compost.jpg',
       title: 'Compost organique maison',
       desc: 'Fabriqué sur nos fermes à partir de déchets végétaux et de fumier de volaille, notre compost enrichit durablement vos sols.'
     },
     {
-      url: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/honey.jpg',
       title: 'Miel pur de nos ruches',
       desc: "Notre miel brut d'eucalyptus des Niayes est extrait à froid pour préserver toutes ses enzymes et ses bienfaits naturels."
     }
@@ -64,7 +64,7 @@ const Shop = () => {
         textAlign: 'center',
         padding: '20px',
         color: 'white',
-        backgroundImage: 'url("https://images.unsplash.com/photo-1586771107445-d3ca888129ff?q=80&w=1400&auto=format&fit=crop")',
+        backgroundImage: 'url("/images/irrigation.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}>
@@ -113,8 +113,8 @@ const Shop = () => {
             </div>
           </div>
           <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', height: '440px', boxShadow: '0 10px 30px rgba(0,0,0,0.08)', position: 'relative' }}>
-            <img
-              src="https://images.unsplash.com/photo-1592824834252-b65a2370f403?q=80&w=800&auto=format&fit=crop"
+             <img
+              src="/images/compost.jpg"
               alt="Compost organique"
               style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
               onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}

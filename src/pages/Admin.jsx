@@ -111,7 +111,7 @@ const Admin = () => {
       soil: plantForm.soil || 'Sableux et riche',
       water: plantForm.water,
       sun: plantForm.sun,
-      image: plantForm.image || 'https://images.unsplash.com/photo-1463123081488-729f608e9f5e?q=80&w=600&auto=format&fit=crop',
+      image: plantForm.image || '/images/garden.jpg',
       description: plantForm.description,
       tips: plantForm.tips || 'Arrosage régulier et maintien de l\'humidité.'
     });
@@ -131,7 +131,7 @@ const Admin = () => {
       price: parseFloat(equipForm.price) || 0,
       stock: parseInt(equipForm.stock) || 0,
       location: equipForm.location,
-      image: equipForm.image || 'https://images.unsplash.com/photo-1586771107445-d3ca888129ff?q=80&w=600&auto=format&fit=crop',
+      image: equipForm.image || '/images/irrigation.jpg',
       description: equipForm.description,
       specs: equipForm.specs || '100% naturel et fabriqué localement.'
     });
@@ -152,7 +152,7 @@ const Admin = () => {
       date: trainingForm.date,
       price: parseFloat(trainingForm.price) || 0,
       availablePlaces: parseInt(trainingForm.availablePlaces) || 0,
-      image: trainingForm.image || 'https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?q=80&w=600&auto=format&fit=crop',
+      image: trainingForm.image || '/images/training.jpg',
       description: trainingForm.description
     });
     triggerSuccess(`La formation "${trainingForm.title}" a été ajoutée avec succès !`);
@@ -171,7 +171,7 @@ const Admin = () => {
       price: parseFloat(campingForm.price) || 0,
       capacity: parseInt(campingForm.capacity) || 0,
       location: campingForm.location,
-      image: campingForm.image || 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=600&auto=format&fit=crop',
+      image: campingForm.image || '/images/camping.webp',
       description: campingForm.description
     });
     triggerSuccess(`L'hébergement "${campingForm.name}" a été ajouté au camping !`);

@@ -9,17 +9,17 @@ const Apiculture = () => {
   // Liste de photos haute résolution en rapport direct avec l'apiculture
   const photos = [
     {
-      url: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/honey.jpg',
       title: 'Miel pur et récolte artisanale',
       desc: 'Notre miel brut des Niayes est récolté de manière traditionnelle, filtré à froid pour conserver toutes ses enzymes et bienfaits.'
     },
     {
-      url: 'https://images.unsplash.com/photo-1473081556163-2a17de81fc97?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/beehives.jpg',
       title: 'Les ruches Kényanes de Mboro',
       desc: 'Installées dans nos forêts d\'eucalyptus à Mboro, nos ruches horizontales respectent le mode de vie naturel des colonies.'
     },
     {
-      url: 'https://images.unsplash.com/photo-1508808789028-6a84f511f7c8?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/bee.jpg',
       title: 'Abeilles butineuses locales',
       desc: 'Nos abeilles (Apis mellifera adansonii) butinent la flore naturelle des Niayes : baobabs, eucalyptus et fleurs sauvages.'
     }
@@ -49,7 +49,7 @@ const Apiculture = () => {
         textAlign: 'center',
         padding: '20px',
         color: 'white',
-        backgroundImage: 'url("https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=1200&auto=format&fit=crop")',
+        backgroundImage: 'url("/images/honey.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}>
@@ -114,7 +114,7 @@ const Apiculture = () => {
           {/* Image illustrative zoomable */}
           <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', height: '420px', boxShadow: '0 10px 30px rgba(0,0,0,0.08)', position: 'relative' }}>
             <img 
-              src="https://images.unsplash.com/photo-1473081556163-2a17de81fc97?q=80&w=800&auto=format&fit=crop" 
+              src="/images/beehives.jpg" 
               alt="Hives and bees" 
               style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
               onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}

@@ -214,7 +214,7 @@ const Farms = () => {
             <div className="grid-2" style={{ alignItems: 'center', gap: 0 }}>
               <div style={{ position: 'relative', height: '100%', minHeight: '350px', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
                 <img 
-                  src="https://images.unsplash.com/photo-1599387737281-807c291950aa?q=80&w=1000&auto=format&fit=crop" 
+                  src="/images/aquaponics.jpg" 
                   alt="Bassins d'aquaponie et pisciculture" 
                   style={{ width: '100%', height: '100%', objectFit: 'cover', flex: 1 }} 
                 />

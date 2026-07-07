@@ -253,7 +253,7 @@ const INITIAL_EQUIPMENT = [
     location: 'both',
     price: 135000,
     stock: 15,
-    image: 'https://images.unsplash.com/photo-1508197149814-0cc02e8b7f74?q=80&w=600&auto=format&fit=crop',
+    image: '/images/irrigation.jpg',
     description: 'Système complet d\'arrosage basse pression alimenté par un petit panneau solaire. Idéal pour économiser l\'eau.',
     specs: 'Comprend 1 mini-pompe, 1 panneau solaire 20W, filtres, tuyaux capillaires et goutteurs régulés.'
   },
@@ -264,7 +264,7 @@ const INITIAL_EQUIPMENT = [
     location: 'mboro',
     price: 3500,
     stock: 500,
-    image: 'https://images.unsplash.com/photo-1592824834252-b65a2370f403?q=80&w=600&auto=format&fit=crop',
+    image: '/images/compost.jpg',
     description: 'Compost organique de qualité supérieure fabriqué sur nos fermes de Mboro par compostage aérobie.',
     specs: 'Riche en azote, phosphore et potassium organique. 100% naturel sans additifs chimiques.'
   },
@@ -275,7 +275,7 @@ const INITIAL_EQUIPMENT = [
     location: 'mboro',
     price: 6000,
     stock: 200,
-    image: 'https://images.unsplash.com/photo-1533519894451-b0e6fa9a8264?q=80&w=600&auto=format&fit=crop',
+    image: '/images/biochar.jpg',
     description: 'Amendement de sol écologique qui retient l\'eau et les nutriments de manière permanente dans les sols sableux.',
     specs: 'Charbon végétal activé au purin de moringa. Améliore la structure du sol sur plusieurs décennies.'
   },
@@ -286,7 +286,7 @@ const INITIAL_EQUIPMENT = [
     location: 'both',
     price: 18500,
     stock: 25,
-    image: 'https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?q=80&w=600&auto=format&fit=crop',
+    image: '/images/sprayer.jpg',
     description: 'Pulvérisateur à dos robuste, parfait pour appliquer vos bio-pesticides (purins de neem, piment, tabac).',
     specs: 'Buse réglable en laiton, sangle de transport matelassée et soupape de sécurité.'
   },
@@ -297,7 +297,7 @@ const INITIAL_EQUIPMENT = [
     location: 'mboro',
     price: 4500,
     stock: 45,
-    image: 'https://images.unsplash.com/photo-1613216512464-956a4ae40f8d?q=80&w=600&auto=format&fit=crop',
+    image: '/images/honey.jpg',
     description: 'Miel pur et brut récolté dans nos ruches. Notes florales intenses d\'eucalyptus et de baobab.',
     specs: 'Non pasteurisé, extrait à froid pour conserver toutes ses propriétés antibactériennes.'
   },
@@ -308,7 +308,7 @@ const INITIAL_EQUIPMENT = [
     location: 'mboro',
     price: 35000,
     stock: 8,
-    image: 'https://images.unsplash.com/photo-1473081556163-2a17de81fc97?q=80&w=600&auto=format&fit=crop',
+    image: '/images/beehives.jpg',
     description: 'Ruche écologique horizontale idéale pour l\'apiculture en Afrique, fabriquée en bois de rônier local.',
     specs: 'Facile à manipuler, respecte le comportement naturel des abeilles sans besoin de cadres.'
   },
@@ -319,7 +319,7 @@ const INITIAL_EQUIPMENT = [
     location: 'ngaparou',
     price: 1500,
     stock: 120,
-    image: 'https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?q=80&w=600&auto=format&fit=crop',
+    image: '/images/soaps.jpg',
     description: 'Savon saponifié à froid à partir d\'ingrédients de nos fermes. Excellent pour les problèmes de peau.',
     specs: '100% organique, sans huile de palme, parfumé naturellement aux huiles essentielles.'
   },
@@ -330,7 +330,7 @@ const INITIAL_EQUIPMENT = [
     location: 'ngaparou',
     price: 5000,
     stock: 30,
-    image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=600&auto=format&fit=crop',
+    image: '/images/oil.jpg',
     description: 'Huile végétale ultra-nourrissante pressée à froid. Protège la peau et revitalise les cheveux secs.',
     specs: 'Riche en acides gras essentiels et vitamines E, F. Cultivée et pressée au Sénégal.'
   }
@@ -346,7 +346,7 @@ const INITIAL_TRAININGS = [
     date: '12 - 14 Juin 2026',
     price: 45000,
     availablePlaces: 12,
-    image: 'https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?q=80&w=600&auto=format&fit=crop',
+    image: '/images/training.jpg',
     description: 'Apprenez à concevoir un écosystème nourricier productif en zone sahélienne : gestion de l\'eau, paillage, fertilité des sols sablonneux.'
   },
   {
@@ -357,7 +357,7 @@ const INITIAL_TRAININGS = [
     date: '27 - 28 Juin 2026',
     price: 35000,
     availablePlaces: 8,
-    image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=600&auto=format&fit=crop',
+    image: '/images/garden.jpg',
     description: 'Maîtrisez les techniques de multiplication des plantes : semis, bouturage, marcottage et greffage des manguiers/agrumes.'
   },
   {
@@ -368,7 +368,7 @@ const INITIAL_TRAININGS = [
     date: '11 - 12 Juillet 2026',
     price: 55000,
     availablePlaces: 15,
-    image: 'https://images.unsplash.com/photo-1463123081488-729f608e9f5e?q=80&w=600&auto=format&fit=crop',
+    image: '/images/irrigation.jpg',
     description: 'Formation technique pour concevoir et installer des systèmes d\'irrigation autonomes à énergie solaire sans gaspillage d\'eau.'
   }
 ];
@@ -382,7 +382,7 @@ const INITIAL_CAMPING_SPOTS = [
     price: 7500,
     capacity: 4,
     location: 'Mboro',
-    image: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?q=80&w=600&auto=format&fit=crop',
+    image: '/images/camping.webp',
     description: 'Installez votre propre tente sur un sol sablonneux et herbeux, ombragé naturellement par nos eucalyptus géants.'
   },
   {
@@ -392,7 +392,7 @@ const INITIAL_CAMPING_SPOTS = [
     price: 25000,
     capacity: 2,
     location: 'Ngaparou',
-    image: 'https://images.unsplash.com/photo-1533873984035-25970ab07461?q=80&w=600&auto=format&fit=crop',
+    image: '/images/camping.webp',
     description: 'Grande tente saharienne en toile de coton imperméable montée sur plancher en bois. Lit double, électricité solaire, mobilier artisanal et terrasse privée.'
   },
   {
@@ -402,7 +402,7 @@ const INITIAL_CAMPING_SPOTS = [
     price: 15000,
     capacity: 8,
     location: 'Ngaparou',
-    image: 'https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?q=80&w=600&auto=format&fit=crop',
+    image: '/images/camping.webp',
     description: 'Idéal pour les groupes ou clubs de randonneurs. Grand espace partagé avec lits superposés en bambou local et grande table de pique-nique.'
   }
 ];
@@ -465,12 +465,12 @@ export const AppProvider = ({ children }) => {
     };
 
     return data.map(e => {
-      if (e.id === 'e1') e.image = 'https://images.unsplash.com/photo-1508197149814-0cc02e8b7f74?q=80&w=600&auto=format&fit=crop';
-      if (e.id === 'e2') e.image = 'https://images.unsplash.com/photo-1592824834252-b65a2370f403?q=80&w=600&auto=format&fit=crop';
-      if (e.id === 'e3') e.image = 'https://images.unsplash.com/photo-1533519894451-b0e6fa9a8264?q=80&w=600&auto=format&fit=crop';
-      if (e.id === 'e4') e.image = 'https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?q=80&w=600&auto=format&fit=crop';
-      if (e.id === 'e5') e.image = 'https://images.unsplash.com/photo-1613216512464-956a4ae40f8d?q=80&w=600&auto=format&fit=crop';
-      if (e.id === 'e6') e.image = 'https://images.unsplash.com/photo-1473081556163-2a17de81fc97?q=80&w=600&auto=format&fit=crop';
+      if (e.id === 'e1') e.image = '/images/irrigation.jpg';
+      if (e.id === 'e2') e.image = '/images/compost.jpg';
+      if (e.id === 'e3') e.image = '/images/biochar.jpg';
+      if (e.id === 'e4') e.image = '/images/sprayer.jpg';
+      if (e.id === 'e5') e.image = '/images/honey.jpg';
+      if (e.id === 'e6') e.image = '/images/beehives.jpg';
       const meta = equipmentMetadata[e.id];
       if (meta) {
         e.category = meta.category;
@@ -497,7 +497,9 @@ export const AppProvider = ({ children }) => {
     return data.map(t => {
       if (titleFixes[t.id]) t.title = titleFixes[t.id];
       if (durationFixes[t.id]) t.duration = durationFixes[t.id];
-      if (t.id === 't3') t.image = 'https://images.unsplash.com/photo-1586771107445-d3ca888129ff?q=80&w=600&auto=format&fit=crop';
+      if (t.id === 't1') t.image = '/images/training.jpg';
+      if (t.id === 't2') t.image = '/images/garden.jpg';
+      if (t.id === 't3') t.image = '/images/irrigation.jpg';
       return t;
     });
   });

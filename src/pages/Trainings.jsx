@@ -26,17 +26,17 @@ const Trainings = () => {
   // Galerie de photos thématiques formations
   const photos = [
     {
-      url: 'https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/training.jpg',
       title: 'Atelier pratique de maraîchage',
       desc: "Nos stagiaires apprennent les gestes de greffe, d'arrosage au goutte-à-goutte et de préparation de pépinière directement sur le terrain."
     },
     {
-      url: 'https://images.unsplash.com/photo-1615560182223-263a04e21e7c?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/aquaponics.jpg',
       title: 'Formation en aquaponie',
       desc: "Les participants construisent leur propre mini-système aquaponique et repartent avec tous les plans et une fiche technique complète."
     },
     {
-      url: 'https://images.unsplash.com/photo-1592824834252-b65a2370f403?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/compost.jpg',
       title: 'Cours de compostage aérobie',
       desc: "Module pratique de fabrication de compost et de biochar à partir de déchets agricoles pour régénérer les sols sahéliens."
     }
@@ -73,7 +73,7 @@ const Trainings = () => {
         textAlign: 'center',
         padding: '20px',
         color: 'white',
-        backgroundImage: 'url("https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?q=80&w=1400&auto=format&fit=crop")',
+        backgroundImage: 'url("/images/training.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}>
@@ -123,7 +123,7 @@ const Trainings = () => {
           </div>
           <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', height: '440px', boxShadow: '0 10px 30px rgba(0,0,0,0.08)', position: 'relative' }}>
             <img
-              src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop"
+              src="/images/aquaponics.jpg"
               alt="Formation agroécologie"
               style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
               onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}

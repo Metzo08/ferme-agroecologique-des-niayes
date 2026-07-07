@@ -9,22 +9,22 @@ const Pisciculture = () => {
   // Liste de photos haute résolution en rapport direct avec la pisciculture et l'aquaponie
   const photos = [
     {
-      url: 'https://images.unsplash.com/photo-1599387737281-807c291950aa?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/aquaponics.jpg',
       title: 'Bassins de pisciculture sous serre',
       desc: 'Nos installations modernes de pisciculture en milieu contrôlé permettent une gestion de l\'eau rigoureuse et une protection optimale des poissons.'
     },
     {
-      url: 'https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/fish.jpg',
       title: 'Élevage responsable de Tilapias',
       desc: 'Les Tilapias sont élevés dans des conditions d\'eau optimales, nourris avec des intrants naturels et locaux, sans antibiotiques.'
     },
     {
-      url: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/aquaponics.jpg',
       title: 'Radeaux d\'aquaponie végétale',
       desc: 'Les plantes de maraîchage poussent directement sur des supports flottants, absorbant les nutriments organiques issus de l\'eau des poissons.'
     },
     {
-      url: 'https://images.unsplash.com/photo-1581093450063-11367f82420a?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/microbiology.jpg',
       title: 'Contrôle agronomique et microbiologique',
       desc: 'Suivi permanent de la qualité de l\'eau et de la flore microbienne pour garantir l\'équilibre parfait entre les poissons et les plantes.'
     }
@@ -54,7 +54,7 @@ const Pisciculture = () => {
         textAlign: 'center',
         padding: '20px',
         color: 'white',
-        backgroundImage: 'url("https://images.unsplash.com/photo-1599387737281-807c291950aa?q=80&w=1200&auto=format&fit=crop")',
+        backgroundImage: 'url("/images/aquaponics.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}>
@@ -119,8 +119,8 @@ const Pisciculture = () => {
           {/* Image illustrative zoomable */}
           <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', height: '420px', boxShadow: '0 10px 30px rgba(0,0,0,0.08)', position: 'relative' }}>
             <img 
-              src="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?q=80&w=800&auto=format&fit=crop" 
-              alt="Poissons sains sous l'eau" 
+              src="/images/fish.jpg" 
+              alt="Tilapias and farming" 
               style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
               onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
               onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}

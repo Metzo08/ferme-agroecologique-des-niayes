@@ -9,19 +9,19 @@ const Transformation = () => {
   // Liste de photos haute résolution en rapport direct avec la transformation de produits locaux (savons, huiles, compost)
   const photos = [
     {
-      url: 'https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/soaps.jpg',
       title: 'Savonnerie artisanale et organique',
-      desc: 'Nos savons au Neem et Moringa sont saponifiés à froid sur nos fermes pour conserver les propriétés actives et hydratantes des huiles.'
+      desc: 'Nos savons saponifiés à froid au Neem et Moringa purifient la peau tout en préservant son film hydrolipidique naturel.'
     },
     {
-      url: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/oil.jpg',
       title: 'Huile pure de Baobab et de Neem',
-      desc: 'Pressées à froid mécaniquement, nos huiles cosmétiques et thérapeutiques sont 100% pures, sans solvant ni additif chimique.'
+      desc: 'Les graines locales sont pressées mécaniquement à froid sans solvant pour préserver 100% des acides gras essentiels et vitamines.'
     },
     {
-      url: 'https://images.unsplash.com/photo-1592824834252-b65a2370f403?q=80&w=1000&auto=format&fit=crop',
+      url: '/images/compost.jpg',
       title: 'Compost biologique et Biochar',
-      desc: 'Nous valorisons l\'intégralité de la biomasse de nos parcelles par compostage aérobie pour régénérer la structure des sols sableux.'
+      desc: 'Le Biochar est activé biologiquement puis mélangé au compost aérobie pour régénérer la structure microbiologique des sols sahéliens.'
     }
   ];
 
@@ -49,7 +49,7 @@ const Transformation = () => {
         textAlign: 'center',
         padding: '20px',
         color: 'white',
-        backgroundImage: 'url("https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=1200&auto=format&fit=crop")',
+        backgroundImage: 'url("/images/oil.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}>
@@ -114,7 +114,7 @@ const Transformation = () => {
           {/* Image illustrative zoomable */}
           <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', height: '420px', boxShadow: '0 10px 30px rgba(0,0,0,0.08)', position: 'relative' }}>
             <img 
-              src="https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?q=80&w=800&auto=format&fit=crop" 
+              src="/images/soaps.jpg" 
               alt="Artisanal soaps" 
               style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
               onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}

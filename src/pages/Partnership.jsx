@@ -52,7 +52,7 @@ const Partnership = () => {
         {/* Photo de nature en fond */}
         <div style={{
           position: 'absolute', inset: 0,
-          backgroundImage: 'url("https://images.unsplash.com/photo-1586771107445-d3ca888129ff?q=80&w=1400&auto=format&fit=crop")',
+          backgroundImage: 'url("/images/land.jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }} />
@@ -238,7 +238,7 @@ const Partnership = () => {
           }}>
             <div>
               <img
-                src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=800&auto=format&fit=crop"
+                src="/images/land.jpg"
                 alt="Terrain agricole fertile"
                 style={{ width: '100%', borderRadius: '16px', objectFit: 'cover', height: '360px', boxShadow: '0 20px 40px rgba(0,0,0,0.12)' }}
               />
