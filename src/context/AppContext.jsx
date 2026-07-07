@@ -408,6 +408,17 @@ const INITIAL_CAMPING_SPOTS = [
 ];
 
 export const AppProvider = ({ children }) => {
+  // Versioning pour forcer le nettoyage du cache localStorage lors des mises à jour d'images
+  const CURRENT_VERSION = '1.3';
+  const storedVersion = localStorage.getItem('niayes_app_version');
+  if (storedVersion !== CURRENT_VERSION) {
+    localStorage.removeItem('niayes_plants');
+    localStorage.removeItem('niayes_equipment');
+    localStorage.removeItem('niayes_trainings');
+    localStorage.removeItem('niayes_camping_spots');
+    localStorage.setItem('niayes_app_version', CURRENT_VERSION);
+  }
+
   // Chargement ou initialisation des données locales avec correction des images cassées
   const [plants, setPlants] = useState(() => {
     const local = localStorage.getItem('niayes_plants');
