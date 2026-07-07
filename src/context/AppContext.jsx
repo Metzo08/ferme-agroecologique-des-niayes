@@ -168,7 +168,7 @@ const INITIAL_PLANTS = [
     soil: 'drainé',
     water: 'faible',
     sun: 'plein-soleil',
-    image: 'https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?q=80&w=600&auto=format&fit=crop',
+    image: '/images/lavande.jpg',
     description: 'La lavande officinale est un arbuste aromatique du bassin méditerranéen aux multiples bienfaits, reconnue pour ses propriétés relaxantes, calmantes, antiseptiques et cicatrisantes.',
     tips: 'L\'huile essentielle peut être diffusée ou diluée dans une huile végétale pour des massages apaisants.'
   },
@@ -182,7 +182,7 @@ const INITIAL_PLANTS = [
     soil: 'sableux-riche',
     water: 'moyen',
     sun: 'plein-soleil',
-    image: 'https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?q=80&w=600&auto=format&fit=crop',
+    image: '/images/celeri.jpg',
     description: 'Le céleri est un légume polyvalent peu calorique et riche en vitamines A, K et C. Il favorise une digestion saine, aide à éliminer les toxines et protège le système cardiovasculaire.',
     tips: 'Consommer cru en salade, en jus détox le matin à jeun, ou en soupe de légumes.'
   },
@@ -196,7 +196,7 @@ const INITIAL_PLANTS = [
     soil: 'drainé',
     water: 'faible',
     sun: 'plein-soleil',
-    image: 'https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?q=80&w=600&auto=format&fit=crop',
+    image: '/images/romarin.jpg',
     description: 'Le romarin est un petit arbuste de la famille des lamiacées aux propriétés digestives, antioxydantes, anti-inflammatoires et antibactériennes qui stimulent la mémoire et soulagent les ballonnements.',
     tips: 'Préparer en infusion pour digérer ou en huile essentielle pour soulager les douleurs musculaires.'
   },
@@ -210,7 +210,7 @@ const INITIAL_PLANTS = [
     soil: 'sableux',
     water: 'moyen',
     sun: 'mi-ombre',
-    image: 'https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?q=80&w=600&auto=format&fit=crop',
+    image: '/images/origan_cubain.jpg',
     description: 'L\'origan cubain, aussi appelé gros thym antillais, est une plante aromatique vivace traditionnelle utilisée pour traiter les infections respiratoires comme la toux et fluidifier le mucus.',
     tips: 'Infuser les feuilles ou utiliser en inhalation pour dégager les voies respiratoires.'
   },
@@ -224,7 +224,7 @@ const INITIAL_PLANTS = [
     soil: 'sableux',
     water: 'faible',
     sun: 'plein-soleil',
-    image: 'https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?q=80&w=600&auto=format&fit=crop',
+    image: '/images/pois_angole.jpg',
     description: 'Le pois d\'angole est une légumineuse riche en protéines de haute qualité et acides aminés essentiels, parfaite pour substituer la viande et enrichir les sols en azote.',
     tips: 'Consommer les graines cuites en soupe ou utiliser comme plante de couverture pour enrichir le sol.'
   },
@@ -433,11 +433,11 @@ export const AppProvider = ({ children }) => {
       if (p.id === 'p9') p.image = '/images/chanvre_eau.jpg';
       if (p.id === 'p10') p.image = '/images/sauge_officinale.jpg';
       if (p.id === 'p11') p.image = '/images/achillee.jpg';
-      if (p.id === 'p12') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.24.webp';
-      if (p.id === 'p13') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.25.webp';
-      if (p.id === 'p14') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.26.webp';
-      if (p.id === 'p15') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.27.webp';
-      if (p.id === 'p16') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.28.webp';
+      if (p.id === 'p12') p.image = '/images/lavande.jpg';
+      if (p.id === 'p13') p.image = '/images/celeri.jpg';
+      if (p.id === 'p14') p.image = '/images/romarin.jpg';
+      if (p.id === 'p15') p.image = '/images/origan_cubain.jpg';
+      if (p.id === 'p16') p.image = '/images/pois_angole.jpg';
       if (p.id === 'p17') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.29.webp';
       
       // Fix broken unsplash links for user-added plants by replacing them with a default local image
