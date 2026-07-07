@@ -9,7 +9,7 @@ const SERVICES = [
     colorLight: '#E8F5E9',
     title: "Aménagement d'espaces verts publiques et jardins",
     description: "Conception paysagère, choix de plantes adaptées au climat local, installation de systèmes d'irrigation goutte-à-goutte et pose de gazon naturel.",
-    image: '/images/whatsapp_image_2026_05_27_at_19.12.24.webp',
+    image: 'https://images.unsplash.com/photo-1558904541-efa8c1a68f6f?q=80&w=800&auto=format&fit=crop',
     points: [
       "Plans de végétalisation adaptés aux zones sahéliennes",
       "Sélection de plantes résistantes à la sécheresse",
@@ -23,7 +23,7 @@ const SERVICES = [
     colorLight: '#FFF3E0',
     title: "Entretien des cultures & suivi technique",
     description: "Nos agronomes se déplacent pour diagnostiquer vos sols, traiter écologiquement les maladies et optimiser vos rendements de manière naturelle.",
-    image: '/images/whatsapp_image_2026_05_27_at_19.12.30.webp',
+    image: 'https://images.unsplash.com/photo-1593113598332-cd59c5bc3f90?q=80&w=800&auto=format&fit=crop',
     points: [
       "Diagnostic pédologique et analyse de sol",
       "Traitement phytosanitaire 100% biologique",
@@ -37,7 +37,7 @@ const SERVICES = [
     colorLight: '#E3F2FD',
     title: "Travaux de constructions écologiques",
     description: "Réalisation de poulaillers, bergeries, hangars de stockage et clôtures intégrées respectant les normes de bien-être animal et d'éco-construction.",
-    image: '/images/whatsapp_image_2026_05_27_at_19.12.33.webp',
+    image: 'https://images.unsplash.com/photo-1588612450534-118e698889d1?q=80&w=800&auto=format&fit=crop',
     points: [
       "Poulaillers et bergeries en matériaux locaux",
       "Hangars de stockage ventilés naturellement",

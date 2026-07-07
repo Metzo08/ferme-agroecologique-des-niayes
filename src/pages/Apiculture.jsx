@@ -14,12 +14,12 @@ const Apiculture = () => {
       desc: 'Notre miel brut des Niayes est récolté de manière traditionnelle, filtré à froid pour conserver toutes ses enzymes et bienfaits.'
     },
     {
-      url: 'https://images.unsplash.com/photo-1471864167314-e5f7e37e404c?q=80&w=1000&auto=format&fit=crop',
+      url: 'https://images.unsplash.com/photo-1473081556163-2a17de81fc97?q=80&w=1000&auto=format&fit=crop',
       title: 'Les ruches Kényanes de Mboro',
       desc: 'Installées dans nos forêts d\'eucalyptus à Mboro, nos ruches horizontales respectent le mode de vie naturel des colonies.'
     },
     {
-      url: 'https://images.unsplash.com/photo-1558905663-8a034237f374?q=80&w=1000&auto=format&fit=crop',
+      url: 'https://images.unsplash.com/photo-1508808789028-6a84f511f7c8?q=80&w=1000&auto=format&fit=crop',
       title: 'Abeilles butineuses locales',
       desc: 'Nos abeilles (Apis mellifera adansonii) butinent la flore naturelle des Niayes : baobabs, eucalyptus et fleurs sauvages.'
     }
@@ -114,7 +114,7 @@ const Apiculture = () => {
           {/* Image illustrative zoomable */}
           <div style={{ borderRadius: 'var(--radius-md)', overflow: 'hidden', height: '420px', boxShadow: '0 10px 30px rgba(0,0,0,0.08)', position: 'relative' }}>
             <img 
-              src="https://images.unsplash.com/photo-1471864167314-e5f7e37e404c?q=80&w=800&auto=format&fit=crop" 
+              src="https://images.unsplash.com/photo-1473081556163-2a17de81fc97?q=80&w=800&auto=format&fit=crop" 
               alt="Hives and bees" 
               style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
               onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.05)'}

@@ -27,7 +27,7 @@ const Shop = () => {
       desc: 'Fabriqué sur nos fermes à partir de déchets végétaux et de fumier de volaille, notre compost enrichit durablement vos sols.'
     },
     {
-      url: 'https://images.unsplash.com/photo-1471864167314-e5f7e37e404c?q=80&w=1000&auto=format&fit=crop',
+      url: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=1000&auto=format&fit=crop',
       title: 'Miel pur de nos ruches',
       desc: "Notre miel brut d'eucalyptus des Niayes est extrait à froid pour préserver toutes ses enzymes et ses bienfaits naturels."
     }

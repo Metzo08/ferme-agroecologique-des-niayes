@@ -9,7 +9,7 @@ const Pisciculture = () => {
   // Liste de photos haute résolution en rapport direct avec la pisciculture et l'aquaponie
   const photos = [
     {
-      url: 'https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1000&auto=format&fit=crop',
+      url: 'https://images.unsplash.com/photo-1599387737281-807c291950aa?q=80&w=1000&auto=format&fit=crop',
       title: 'Bassins de pisciculture sous serre',
       desc: 'Nos installations modernes de pisciculture en milieu contrôlé permettent une gestion de l\'eau rigoureuse et une protection optimale des poissons.'
     },
@@ -19,12 +19,12 @@ const Pisciculture = () => {
       desc: 'Les Tilapias sont élevés dans des conditions d\'eau optimales, nourris avec des intrants naturels et locaux, sans antibiotiques.'
     },
     {
-      url: 'https://images.unsplash.com/photo-1558449028-b53a39d100fc?q=80&w=1000&auto=format&fit=crop',
+      url: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=1000&auto=format&fit=crop',
       title: 'Radeaux d\'aquaponie végétale',
       desc: 'Les plantes de maraîchage poussent directement sur des supports flottants, absorbant les nutriments organiques issus de l\'eau des poissons.'
     },
     {
-      url: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1000&auto=format&fit=crop',
+      url: 'https://images.unsplash.com/photo-1581093450063-11367f82420a?q=80&w=1000&auto=format&fit=crop',
       title: 'Contrôle agronomique et microbiologique',
       desc: 'Suivi permanent de la qualité de l\'eau et de la flore microbienne pour garantir l\'équilibre parfait entre les poissons et les plantes.'
     }
@@ -54,7 +54,7 @@ const Pisciculture = () => {
         textAlign: 'center',
         padding: '20px',
         color: 'white',
-        backgroundImage: 'url("https://images.unsplash.com/photo-1534447677768-be436bb09401?q=80&w=1200&auto=format&fit=crop")',
+        backgroundImage: 'url("https://images.unsplash.com/photo-1599387737281-807c291950aa?q=80&w=1200&auto=format&fit=crop")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}>

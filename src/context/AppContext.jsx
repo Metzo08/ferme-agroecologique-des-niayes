@@ -253,7 +253,7 @@ const INITIAL_EQUIPMENT = [
     location: 'both',
     price: 135000,
     stock: 15,
-    image: 'https://images.unsplash.com/photo-1463123081488-729f608e9f5e?q=80&w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1508197149814-0cc02e8b7f74?q=80&w=600&auto=format&fit=crop',
     description: 'Système complet d\'arrosage basse pression alimenté par un petit panneau solaire. Idéal pour économiser l\'eau.',
     specs: 'Comprend 1 mini-pompe, 1 panneau solaire 20W, filtres, tuyaux capillaires et goutteurs régulés.'
   },
@@ -275,7 +275,7 @@ const INITIAL_EQUIPMENT = [
     location: 'mboro',
     price: 6000,
     stock: 200,
-    image: 'https://images.unsplash.com/photo-1526481280693-3bfa7563ee94?q=80&w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1533519894451-b0e6fa9a8264?q=80&w=600&auto=format&fit=crop',
     description: 'Amendement de sol écologique qui retient l\'eau et les nutriments de manière permanente dans les sols sableux.',
     specs: 'Charbon végétal activé au purin de moringa. Améliore la structure du sol sur plusieurs décennies.'
   },
@@ -286,7 +286,7 @@ const INITIAL_EQUIPMENT = [
     location: 'both',
     price: 18500,
     stock: 25,
-    image: 'https://images.unsplash.com/photo-1615671524827-c1fe3973b648?q=80&w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?q=80&w=600&auto=format&fit=crop',
     description: 'Pulvérisateur à dos robuste, parfait pour appliquer vos bio-pesticides (purins de neem, piment, tabac).',
     specs: 'Buse réglable en laiton, sangle de transport matelassée et soupape de sécurité.'
   },
@@ -308,7 +308,7 @@ const INITIAL_EQUIPMENT = [
     location: 'mboro',
     price: 35000,
     stock: 8,
-    image: 'https://images.unsplash.com/photo-1471864167314-e5f7e37e404c?q=80&w=600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1473081556163-2a17de81fc97?q=80&w=600&auto=format&fit=crop',
     description: 'Ruche écologique horizontale idéale pour l\'apiculture en Afrique, fabriquée en bois de rônier local.',
     specs: 'Facile à manipuler, respecte le comportement naturel des abeilles sans besoin de cadres.'
   },
@@ -465,12 +465,12 @@ export const AppProvider = ({ children }) => {
     };
 
     return data.map(e => {
-      if (e.id === 'e1') e.image = 'https://images.unsplash.com/photo-1586771107445-d3ca888129ff?q=80&w=600&auto=format&fit=crop';
+      if (e.id === 'e1') e.image = 'https://images.unsplash.com/photo-1508197149814-0cc02e8b7f74?q=80&w=600&auto=format&fit=crop';
       if (e.id === 'e2') e.image = 'https://images.unsplash.com/photo-1592824834252-b65a2370f403?q=80&w=600&auto=format&fit=crop';
-      if (e.id === 'e3') e.image = 'https://images.unsplash.com/photo-1526481280693-3bfa7563ee94?q=80&w=600&auto=format&fit=crop';
-      if (e.id === 'e4') e.image = 'https://images.unsplash.com/photo-1615671524827-c1fe3973b648?q=80&w=600&auto=format&fit=crop';
+      if (e.id === 'e3') e.image = 'https://images.unsplash.com/photo-1533519894451-b0e6fa9a8264?q=80&w=600&auto=format&fit=crop';
+      if (e.id === 'e4') e.image = 'https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?q=80&w=600&auto=format&fit=crop';
       if (e.id === 'e5') e.image = 'https://images.unsplash.com/photo-1613216512464-956a4ae40f8d?q=80&w=600&auto=format&fit=crop';
-      if (e.id === 'e6') e.image = 'https://images.unsplash.com/photo-1471864167314-e5f7e37e404c?q=80&w=600&auto=format&fit=crop';
+      if (e.id === 'e6') e.image = 'https://images.unsplash.com/photo-1473081556163-2a17de81fc97?q=80&w=600&auto=format&fit=crop';
       const meta = equipmentMetadata[e.id];
       if (meta) {
         e.category = meta.category;

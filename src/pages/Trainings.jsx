@@ -31,12 +31,12 @@ const Trainings = () => {
       desc: "Nos stagiaires apprennent les gestes de greffe, d'arrosage au goutte-à-goutte et de préparation de pépinière directement sur le terrain."
     },
     {
-      url: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000&auto=format&fit=crop',
+      url: 'https://images.unsplash.com/photo-1615560182223-263a04e21e7c?q=80&w=1000&auto=format&fit=crop',
       title: 'Formation en aquaponie',
       desc: "Les participants construisent leur propre mini-système aquaponique et repartent avec tous les plans et une fiche technique complète."
     },
     {
-      url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop',
+      url: 'https://images.unsplash.com/photo-1592824834252-b65a2370f403?q=80&w=1000&auto=format&fit=crop',
       title: 'Cours de compostage aérobie',
       desc: "Module pratique de fabrication de compost et de biochar à partir de déchets agricoles pour régénérer les sols sahéliens."
     }
