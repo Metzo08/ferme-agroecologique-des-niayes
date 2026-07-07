@@ -238,7 +238,7 @@ const INITIAL_PLANTS = [
     soil: 'drainé',
     water: 'faible',
     sun: 'plein-soleil',
-    image: 'https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?q=80&w=600&auto=format&fit=crop',
+    image: '/images/lantanier.jpg',
     description: 'Le lantanier rampant est une plante vivace couvre-sol idéale contre l\'érosion. Ses fleurs attirent les pollinisateurs et son huile essentielle possède des vertus calmantes.',
     tips: 'Utiliser son huile essentielle pour apaiser les douleurs d\'arthrose ou planter comme couvre-sol coloré.'
   }
@@ -438,7 +438,7 @@ export const AppProvider = ({ children }) => {
       if (p.id === 'p14') p.image = '/images/romarin.jpg';
       if (p.id === 'p15') p.image = '/images/origan_cubain.jpg';
       if (p.id === 'p16') p.image = '/images/pois_angole.jpg';
-      if (p.id === 'p17') p.image = '/images/whatsapp_image_2026_05_27_at_19.12.29.webp';
+      if (p.id === 'p17') p.image = '/images/lantanier.jpg';
       
       // Fix broken unsplash links for user-added plants by replacing them with a default local image
       if (p.image && p.image.includes('unsplash.com')) {
