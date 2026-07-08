@@ -409,7 +409,7 @@ const INITIAL_CAMPING_SPOTS = [
 
 export const AppProvider = ({ children }) => {
   // Versioning pour forcer le nettoyage du cache localStorage lors des mises à jour d'images
-  const CURRENT_VERSION = '1.3';
+  const CURRENT_VERSION = '1.4';
   const storedVersion = localStorage.getItem('niayes_app_version');
   if (storedVersion !== CURRENT_VERSION) {
     localStorage.removeItem('niayes_plants');
