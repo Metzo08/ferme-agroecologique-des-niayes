@@ -382,7 +382,7 @@ const INITIAL_CAMPING_SPOTS = [
     price: 7500,
     capacity: 4,
     location: 'Mboro',
-    image: '/images/camping.webp',
+    image: '/images/camping_nu.jpg',
     description: 'Installez votre propre tente sur un sol sablonneux et herbeux, ombragé naturellement par nos eucalyptus géants.'
   },
   {
@@ -392,7 +392,7 @@ const INITIAL_CAMPING_SPOTS = [
     price: 25000,
     capacity: 2,
     location: 'Ngaparou',
-    image: '/images/camping.webp',
+    image: '/images/camping_premium.jpg',
     description: 'Grande tente saharienne en toile de coton imperméable montée sur plancher en bois. Lit double, électricité solaire, mobilier artisanal et terrasse privée.'
   },
   {
@@ -402,14 +402,14 @@ const INITIAL_CAMPING_SPOTS = [
     price: 15000,
     capacity: 8,
     location: 'Ngaparou',
-    image: '/images/camping.webp',
+    image: '/images/construction.jpg',
     description: 'Idéal pour les groupes ou clubs de randonneurs. Grand espace partagé avec lits superposés en bambou local et grande table de pique-nique.'
   }
 ];
 
 export const AppProvider = ({ children }) => {
   // Versioning pour forcer le nettoyage du cache localStorage lors des mises à jour d'images
-  const CURRENT_VERSION = '1.4';
+  const CURRENT_VERSION = '1.5';
   const storedVersion = localStorage.getItem('niayes_app_version');
   if (storedVersion !== CURRENT_VERSION) {
     localStorage.removeItem('niayes_plants');
