@@ -103,7 +103,7 @@ const Trainings = () => {
 
         {/* ─── PRÉSENTATION ─── */}
         <div className="grid-2" style={{ gap: '40px', alignItems: 'center', marginBottom: '70px' }}>
-          <div className="card" style={{ border: 'none', padding: '44px', backgroundColor: 'white', boxShadow: '0 8px 30px rgba(0,0,0,0.04)' }}>
+          <div className="card" style={{ border: 'none', padding: '44px', backgroundColor: 'var(--white)', boxShadow: '0 8px 30px rgba(0,0,0,0.04)' }}>
             <span className="badge" style={{ backgroundColor: '#E65100', color: 'white', marginBottom: '16px' }}>Pédagogie par le terrain</span>
             <h2 style={{ color: 'var(--text-charcoal)', marginBottom: '24px', fontSize: '2rem' }}>Apprendre en faisant</h2>
             <p style={{ lineHeight: 1.9, fontSize: '1.05rem', color: 'var(--text-muted)', marginBottom: '20px' }}>
@@ -147,7 +147,7 @@ const Trainings = () => {
               { title: 'Instructeurs experts', desc: "Chaque formation est animée par un spécialiste ayant au minimum 10 ans d'expérience en agroécologie africaine.", icon: <Star size={24} color="#8E24AA" />, bg: '#F3E5F5' },
               { title: 'Réseau de 300+ alumnis', desc: "Rejoignez notre communauté d'agriculteurs et entrepreneurs verts actifs à travers tout le Sénégal.", icon: <Users size={24} color="var(--primary)" />, bg: 'var(--primary-light)' }
             ].map((s, i) => (
-              <div key={i} className="card hover-scale" style={{ border: 'none', padding: '32px', backgroundColor: 'white', boxShadow: '0 8px 24px rgba(0,0,0,0.03)' }}>
+              <div key={i} className="card hover-scale" style={{ border: 'none', padding: '32px', backgroundColor: 'var(--white)', boxShadow: '0 8px 24px rgba(0,0,0,0.03)' }}>
                 <div style={{ width: '48px', height: '48px', borderRadius: '12px', backgroundColor: s.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
                   {s.icon}
                 </div>
@@ -159,7 +159,7 @@ const Trainings = () => {
         </div>
 
         {/* ─── GALERIE INTERACTIVE ─── */}
-        <div className="card" style={{ border: 'none', backgroundColor: 'white', padding: '50px', marginBottom: '70px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)' }}>
+        <div className="card" style={{ border: 'none', backgroundColor: 'var(--white)', padding: '50px', marginBottom: '70px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)' }}>
           <div style={{ textAlign: 'center', marginBottom: '32px' }}>
             <span className="badge" style={{ backgroundColor: '#E65100', color: 'white', marginBottom: '12px' }}>Formations en images</span>
             <h2 style={{ color: 'var(--text-charcoal)', margin: 0, fontSize: '2rem' }}>Nos ateliers sur le terrain</h2>
@@ -209,7 +209,7 @@ const Trainings = () => {
                     onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.06)'}
                     onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                   />
-                  <div style={{ position: 'absolute', top: '16px', right: '16px', backgroundColor: 'white', padding: '7px 14px', borderRadius: 'var(--radius-full)', display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 'bold', color: '#E65100', boxShadow: '0 4px 8px rgba(0,0,0,0.12)', fontSize: '0.85rem' }}>
+                  <div style={{ position: 'absolute', top: '16px', right: '16px', backgroundColor: 'var(--white)', padding: '7px 14px', borderRadius: 'var(--radius-full)', display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 'bold', color: '#E65100', boxShadow: '0 4px 8px rgba(0,0,0,0.12)', fontSize: '0.85rem' }}>
                     <GraduationCap size={16} /> Places limitées
                   </div>
                   {training.availablePlaces > 0 && training.availablePlaces <= 5 && (

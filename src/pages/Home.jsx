@@ -145,7 +145,7 @@ const Home = () => {
       </section>
 
       {/* Nos Services Express */}
-      <section className="section" style={{ backgroundColor: 'white' }}>
+      <section className="section" style={{ backgroundColor: 'var(--white)' }}>
         <div className="container">
           <div className="text-center" style={{ marginBottom: '40px' }}>
             <h2>Nos domaines d'expertise</h2>
@@ -179,7 +179,7 @@ const Home = () => {
 
 
       {/* Section Fondateur */}
-      <section className="section" style={{ backgroundColor: 'white', borderTop: '1px solid #EAEAEA' }}>
+      <section className="section" style={{ backgroundColor: 'var(--white)', borderTop: '1px solid #EAEAEA' }}>
         <div className="container">
           <div style={{
             display: 'grid',
@@ -251,7 +251,7 @@ const Home = () => {
                 <Link to="/farms" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                   Nos fermes <ArrowRight size={18} />
                 </Link>
-                <Link to="/partenariat" className="btn" style={{ backgroundColor: 'white', border: '2px solid var(--primary)', color: 'var(--primary)', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                <Link to="/partenariat" className="btn" style={{ backgroundColor: 'var(--white)', border: '2px solid var(--primary)', color: 'var(--primary)', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                   Devenir partenaire
                 </Link>
               </div>

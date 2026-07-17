@@ -68,7 +68,7 @@ const Navbar = () => {
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             
             {/* Localisation Filter */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', backgroundColor: 'white', padding: '6px 12px', borderRadius: 'var(--radius-full)', border: '1px solid var(--border-color)' }} className="desktop-nav">
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', backgroundColor: 'var(--white)', padding: '6px 12px', borderRadius: 'var(--radius-full)', border: '1px solid var(--border-color)' }} className="desktop-nav">
               <MapPin size={16} color="var(--primary)" />
               <select 
                 value={activeFermeFilter} 
@@ -122,7 +122,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div style={{ position: 'absolute', top: '80px', left: 0, width: '100%', backgroundColor: 'var(--bg-sand)', borderBottom: '1px solid var(--border-color)', padding: '20px', display: 'flex', flexDirection: 'column', gap: '16px', boxShadow: 'var(--shadow-md)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', backgroundColor: 'white', padding: '10px 12px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', width: '100%' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', backgroundColor: 'var(--white)', padding: '10px 12px', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-color)', width: '100%' }}>
             <MapPin size={18} color="var(--primary)" />
             <select 
               value={activeFermeFilter} 

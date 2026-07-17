@@ -100,7 +100,7 @@ const Apiculture = () => {
         
         {/* Section 1 : Introduction & Concept */}
         <div className="grid-2" style={{ gap: '40px', alignItems: 'center', marginBottom: '60px' }}>
-          <div className="card" style={{ border: 'none', padding: '40px', backgroundColor: 'white', boxShadow: '0 8px 30px rgba(0,0,0,0.04)' }}>
+          <div className="card" style={{ border: 'none', padding: '40px', backgroundColor: 'var(--white)', boxShadow: '0 8px 30px rgba(0,0,0,0.04)' }}>
             <span className="badge" style={{ backgroundColor: '#8E24AA', color: 'white', marginBottom: '16px' }}>Biodiversité active</span>
             <h2 style={{ color: 'var(--text-charcoal)', marginBottom: '24px', fontSize: '2rem' }}>Le rôle crucial des abeilles</h2>
             <p style={{ lineHeight: 1.8, fontSize: '1.05rem', color: 'var(--text-muted)', marginBottom: '24px' }}>
@@ -166,7 +166,7 @@ const Apiculture = () => {
                 desc: 'Conditionnement direct en pots en verre, garantissant un miel 100% pur, sans eau ni sucre ajouté.'
               }
             ].map((item, idx) => (
-              <div key={idx} className="card" style={{ backgroundColor: 'white', border: 'none', padding: '24px', textAlign: 'center', borderRadius: '16px', boxShadow: '0 4px 15px rgba(0,0,0,0.02)' }}>
+              <div key={idx} className="card" style={{ backgroundColor: 'var(--white)', border: 'none', padding: '24px', textAlign: 'center', borderRadius: '16px', boxShadow: '0 4px 15px rgba(0,0,0,0.02)' }}>
                 <div style={{ 
                   width: '64px', height: '64px', backgroundColor: item.bg, borderRadius: '50%',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px',
@@ -206,7 +206,7 @@ const Apiculture = () => {
                 icon: <Leaf size={24} color="#2E7D32" />
               }
             ].map((stat, idx) => (
-              <div key={idx} className="card hover-scale" style={{ border: 'none', padding: '32px', backgroundColor: 'white', boxShadow: '0 8px 24px rgba(0,0,0,0.03)' }}>
+              <div key={idx} className="card hover-scale" style={{ border: 'none', padding: '32px', backgroundColor: 'var(--white)', boxShadow: '0 8px 24px rgba(0,0,0,0.03)' }}>
                 <div style={{ width: '48px', height: '48px', borderRadius: '12px', backgroundColor: '#FFF3E0', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
                   {stat.icon}
                 </div>
@@ -218,7 +218,7 @@ const Apiculture = () => {
         </div>
 
         {/* Galerie photos réelles d'apiculture */}
-        <div className="card" style={{ border: 'none', backgroundColor: 'white', padding: '48px', marginBottom: '60px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)' }}>
+        <div className="card" style={{ border: 'none', backgroundColor: 'var(--white)', padding: '48px', marginBottom: '60px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)' }}>
           <div style={{ textAlign: 'center', marginBottom: '32px' }}>
             <span className="badge" style={{ backgroundColor: '#8E24AA', color: 'white', marginBottom: '12px' }}>Photographies réelles</span>
             <h2 style={{ color: 'var(--text-charcoal)', margin: 0, fontSize: '2rem' }}>Notre ruche et miel en images</h2>

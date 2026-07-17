@@ -110,17 +110,17 @@ const PaymentSimulator = ({ amount, isOpen, onClose, onSuccess }) => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
             <p style={{ fontSize: '0.9rem', marginBottom: '8px' }}>Choisissez votre opérateur de paiement mobile :</p>
             
-            <button onClick={() => handleProviderSelect('Wave')} style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '16px', borderRadius: 'var(--radius-md)', border: '2px solid var(--border-color)', backgroundColor: 'white', cursor: 'pointer', transition: '0.2s' }}>
+            <button onClick={() => handleProviderSelect('Wave')} style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '16px', borderRadius: 'var(--radius-md)', border: '2px solid var(--border-color)', backgroundColor: 'var(--white)', cursor: 'pointer', transition: '0.2s' }}>
               <div style={{ width: '40px', height: '40px', backgroundColor: '#14C8F4', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold', fontSize: '1.2rem' }}>W</div>
               <span style={{ fontWeight: 600, fontSize: '1.1rem', color: 'var(--text-charcoal)' }}>Wave Mobile Money</span>
             </button>
             
-            <button onClick={() => handleProviderSelect('Orange')} style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '16px', borderRadius: 'var(--radius-md)', border: '2px solid var(--border-color)', backgroundColor: 'white', cursor: 'pointer', transition: '0.2s' }}>
+            <button onClick={() => handleProviderSelect('Orange')} style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '16px', borderRadius: 'var(--radius-md)', border: '2px solid var(--border-color)', backgroundColor: 'var(--white)', cursor: 'pointer', transition: '0.2s' }}>
               <div style={{ width: '40px', height: '40px', backgroundColor: '#FF6600', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold', fontSize: '1.2rem' }}>O</div>
               <span style={{ fontWeight: 600, fontSize: '1.1rem', color: 'var(--text-charcoal)' }}>Orange Money</span>
             </button>
 
-            <button onClick={() => handleProviderSelect('Free')} style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '16px', borderRadius: 'var(--radius-md)', border: '2px solid var(--border-color)', backgroundColor: 'white', cursor: 'pointer', transition: '0.2s' }}>
+            <button onClick={() => handleProviderSelect('Free')} style={{ display: 'flex', alignItems: 'center', gap: '16px', padding: '16px', borderRadius: 'var(--radius-md)', border: '2px solid var(--border-color)', backgroundColor: 'var(--white)', cursor: 'pointer', transition: '0.2s' }}>
               <div style={{ width: '40px', height: '40px', backgroundColor: '#E3000F', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold', fontSize: '1.2rem' }}>F</div>
               <span style={{ fontWeight: 600, fontSize: '1.1rem', color: 'var(--text-charcoal)' }}>Free Money</span>
             </button>

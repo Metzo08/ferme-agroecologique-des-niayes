@@ -139,7 +139,7 @@ const Farms = () => {
         <div className="section container animate-fade">
           <div className="card" style={{ padding: '0', overflow: 'hidden', border: 'none', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
             <div className="grid-2" style={{ alignItems: 'stretch', gap: 0 }}>
-              <div style={{ padding: '60px 40px', backgroundColor: 'white' }}>
+              <div style={{ padding: '60px 40px', backgroundColor: 'var(--white)' }}>
                 <span className="badge badge-mboro" style={{ marginBottom: '24px', fontSize: '0.9rem', display: 'inline-block' }}>Site principal & production</span>
                 <h2 style={{ color: 'var(--primary)', marginBottom: '16px', fontSize: '2.2rem' }}>Domaine de Mboro (Khondio)</h2>
                 
@@ -258,7 +258,7 @@ const Farms = () => {
           <div className="card" style={{ padding: '0', overflow: 'hidden', border: 'none', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
             <div className="grid-2" style={{ alignItems: 'stretch', gap: 0 }}>
               
-              <div className="farm-card-content" style={{ padding: '60px 40px', backgroundColor: 'white' }}>
+              <div className="farm-card-content" style={{ padding: '60px 40px', backgroundColor: 'var(--white)' }}>
                 <span className="badge badge-ngaparou" style={{ marginBottom: '24px', fontSize: '0.9rem', display: 'inline-block' }}>Site touristique & aménagements</span>
                 <h2 style={{ color: 'var(--accent)', marginBottom: '16px', fontSize: '2.2rem' }}>Oasis de Ngaparou (Mbour)</h2>
                 

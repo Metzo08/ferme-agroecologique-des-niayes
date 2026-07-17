@@ -94,7 +94,7 @@ const Shop = () => {
 
         {/* ─── PRÉSENTATION ─── */}
         <div className="grid-2" style={{ gap: '40px', alignItems: 'center', marginBottom: '70px' }}>
-          <div className="card" style={{ border: 'none', padding: '44px', backgroundColor: 'white', boxShadow: '0 8px 30px rgba(0,0,0,0.04)' }}>
+          <div className="card" style={{ border: 'none', padding: '44px', backgroundColor: 'var(--white)', boxShadow: '0 8px 30px rgba(0,0,0,0.04)' }}>
             <span className="badge" style={{ backgroundColor: '#1565C0', color: 'white', marginBottom: '16px' }}>Circuit court</span>
             <h2 style={{ color: 'var(--text-charcoal)', marginBottom: '24px', fontSize: '2rem' }}>Directement de nos fermes</h2>
             <p style={{ lineHeight: 1.9, fontSize: '1.05rem', color: 'var(--text-muted)', marginBottom: '20px' }}>
@@ -138,7 +138,7 @@ const Shop = () => {
               { title: 'Prix justes et directs', desc: "En achetant directement, vous éliminez les intermédiaires. Le producteur est rémunéré équitablement.", icon: <Tag size={24} color="var(--primary)" />, bg: 'var(--primary-light)' },
               { title: 'Zéro déchet garanti', desc: "Nos emballages sont biodégradables ou réutilisables. Les produits sont formulés pour durer et ne pas polluer.", icon: <Leaf size={24} color="#2E7D32" />, bg: '#E8F5E9' }
             ].map((s, i) => (
-              <div key={i} className="card hover-scale" style={{ border: 'none', padding: '32px', backgroundColor: 'white', boxShadow: '0 8px 24px rgba(0,0,0,0.03)' }}>
+              <div key={i} className="card hover-scale" style={{ border: 'none', padding: '32px', backgroundColor: 'var(--white)', boxShadow: '0 8px 24px rgba(0,0,0,0.03)' }}>
                 <div style={{ width: '48px', height: '48px', borderRadius: '12px', backgroundColor: s.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
                   {s.icon}
                 </div>
@@ -150,7 +150,7 @@ const Shop = () => {
         </div>
 
         {/* ─── GALERIE INTERACTIVE ─── */}
-        <div className="card" style={{ border: 'none', backgroundColor: 'white', padding: '50px', marginBottom: '70px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)' }}>
+        <div className="card" style={{ border: 'none', backgroundColor: 'var(--white)', padding: '50px', marginBottom: '70px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)' }}>
           <div style={{ textAlign: 'center', marginBottom: '32px' }}>
             <span className="badge" style={{ backgroundColor: '#1565C0', color: 'white', marginBottom: '12px' }}>Notre sélection en images</span>
             <h2 style={{ color: 'var(--text-charcoal)', margin: 0, fontSize: '2rem' }}>Nos produits phares</h2>
@@ -185,7 +185,7 @@ const Shop = () => {
           </div>
 
           {/* Barre de recherche boutique */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px', backgroundColor: 'white', padding: '16px 20px', borderRadius: '16px', boxShadow: '0 4px 15px rgba(0,0,0,0.02)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px', backgroundColor: 'var(--white)', padding: '16px 20px', borderRadius: '16px', boxShadow: '0 4px 15px rgba(0,0,0,0.02)' }}>
             <div style={{ position: 'relative', width: '100%' }}>
               <Search size={18} color="var(--text-muted)" style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)' }} />
               <input
@@ -360,7 +360,7 @@ const Shop = () => {
         onClick={() => setSelectedProduct(null)}
         >
           <div style={{
-            backgroundColor: 'white',
+            backgroundColor: 'var(--white)',
             borderRadius: '24px',
             maxWidth: '800px',
             width: '100%',

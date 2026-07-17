@@ -207,7 +207,7 @@ const Partnership = () => {
       </section>
 
       {/* ===== Vente de terrains agricoles ===== */}
-      <section style={{ padding: 'clamp(48px, 8vw, 80px) 0', backgroundColor: 'white' }}>
+      <section style={{ padding: 'clamp(48px, 8vw, 80px) 0', backgroundColor: 'var(--white)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '48px' }}>
             <div style={{
@@ -338,7 +338,7 @@ const Partnership = () => {
                     <label style={{ display: 'block', marginBottom: '8px', fontWeight: 600, color: 'var(--text-charcoal)', fontSize: '0.95rem' }}>Objet de votre demande *</label>
                     <select
                       name="type" value={formData.type} onChange={handleChange}
-                      style={{ width: '100%', padding: '12px 16px', border: '1.5px solid var(--border-color)', borderRadius: '10px', fontSize: '1rem', backgroundColor: 'white', boxSizing: 'border-box' }}
+                      style={{ width: '100%', padding: '12px 16px', border: '1.5px solid var(--border-color)', borderRadius: '10px', fontSize: '1rem', backgroundColor: 'var(--white)', boxSizing: 'border-box' }}
                     >
                       <option value="collaborateur">Devenir collaborateur / expert</option>
                       <option value="partenaire">Devenir partenaire commercial</option>

@@ -117,7 +117,7 @@ const Nursery = () => {
 
         {/* ─── PRÉSENTATION & CONCEPT ─── */}
         <div className="grid-2" style={{ gap: '40px', alignItems: 'center', marginBottom: '70px' }}>
-          <div className="card" style={{ border: 'none', padding: '44px', backgroundColor: 'white', boxShadow: '0 8px 30px rgba(0,0,0,0.04)' }}>
+          <div className="card" style={{ border: 'none', padding: '44px', backgroundColor: 'var(--white)', boxShadow: '0 8px 30px rgba(0,0,0,0.04)' }}>
             <span className="badge" style={{ backgroundColor: 'var(--primary)', color: 'white', marginBottom: '16px' }}>Approche naturelle</span>
             <h2 style={{ color: 'var(--text-charcoal)', marginBottom: '24px', fontSize: '2rem' }}>Une pépinière au cœur des Niayes</h2>
             <p style={{ lineHeight: 1.9, fontSize: '1.05rem', color: 'var(--text-muted)', marginBottom: '20px' }}>
@@ -166,7 +166,7 @@ const Nursery = () => {
               { step: '3', title: 'Croissance en pépinière', icon: <Sun size={30} color="white" />, bg: '#388E3C', desc: "Élevage de 2 à 6 mois selon l'espèce, avec arrosage au goutte-à-goutte solaire et tuteurage." },
               { step: '4', title: 'Livraison & Plantation', icon: <CheckCircle2 size={30} color="white" />, bg: '#43A047', desc: "Plants repiqués, étiquetés et livrés avec fiche technique et recommandations de plantation." }
             ].map((item, idx) => (
-              <div key={idx} className="card" style={{ backgroundColor: 'white', border: 'none', padding: '28px 20px', textAlign: 'center', borderRadius: '16px', boxShadow: '0 4px 15px rgba(0,0,0,0.02)' }}>
+              <div key={idx} className="card" style={{ backgroundColor: 'var(--white)', border: 'none', padding: '28px 20px', textAlign: 'center', borderRadius: '16px', boxShadow: '0 4px 15px rgba(0,0,0,0.02)' }}>
                 <div style={{ width: '64px', height: '64px', backgroundColor: item.bg, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 18px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
                   {item.icon}
                 </div>
@@ -179,7 +179,7 @@ const Nursery = () => {
         </div>
 
         {/* ─── GALERIE INTERACTIVE ─── */}
-        <div className="card" style={{ border: 'none', backgroundColor: 'white', padding: '50px', marginBottom: '70px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)' }}>
+        <div className="card" style={{ border: 'none', backgroundColor: 'var(--white)', padding: '50px', marginBottom: '70px', boxShadow: '0 10px 30px rgba(0,0,0,0.04)' }}>
           <div style={{ textAlign: 'center', marginBottom: '32px' }}>
             <span className="badge" style={{ backgroundColor: '#2E7D32', color: 'white', marginBottom: '12px' }}>Notre pépinière en images</span>
             <h2 style={{ color: 'var(--text-charcoal)', margin: 0, fontSize: '2rem' }}>Visitez nos espaces de production</h2>
@@ -214,7 +214,7 @@ const Nursery = () => {
           </div>
 
           {/* Barre de filtres */}
-          <div className="card" style={{ padding: '24px 28px', marginBottom: '40px', display: 'flex', gap: '24px', flexWrap: 'wrap', alignItems: 'center', backgroundColor: 'white', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.04)' }}>
+          <div className="card" style={{ padding: '24px 28px', marginBottom: '40px', display: 'flex', gap: '24px', flexWrap: 'wrap', alignItems: 'center', backgroundColor: 'var(--white)', border: 'none', boxShadow: '0 4px 20px rgba(0,0,0,0.04)' }}>
             {/* Recherche textuelle */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexGrow: 1, minWidth: '260px' }}>
               <div style={{ position: 'relative', width: '100%' }}>
@@ -391,7 +391,7 @@ const Nursery = () => {
         onClick={() => setSelectedPlant(null)}
         >
           <div style={{
-            backgroundColor: 'white',
+            backgroundColor: 'var(--white)',
             borderRadius: '24px',
             maxWidth: '800px',
             width: '100%',
