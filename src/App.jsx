@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AppProvider } from './context/AppContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import Lightbox from './components/Lightbox';
+
+// ... pages imports
 import Home from './pages/Home';
 import Nursery from './pages/Nursery';
 import Camping from './pages/Camping';
@@ -19,6 +22,25 @@ import Transformation from './pages/Transformation';
 import Partnership from './pages/Partnership';
 
 function App() {
+  const [lightboxImg, setLightboxImg] = useState(null);
+
+  useEffect(() => {
+    // Écouteur global pour ouvrir la lightbox sur clic de n'importe quelle image
+    const handleGlobalClick = (e) => {
+      if (e.target.tagName === 'IMG') {
+        // Ignorer les logos de la navigation et du footer
+        if (e.target.closest('nav') || e.target.closest('footer')) return;
+        // Ignorer les petites icônes si elles ont une classe spécifique
+        if (e.target.classList.contains('no-lightbox')) return;
+        
+        setLightboxImg(e.target.src);
+      }
+    };
+
+    document.addEventListener('click', handleGlobalClick);
+    return () => document.removeEventListener('click', handleGlobalClick);
+  }, []);
+
   return (
     <AppProvider>
       <Router>
@@ -45,6 +67,11 @@ function App() {
           </main>
           <Footer />
         </div>
+        
+        {/* Lightbox globale */}
+        {lightboxImg && (
+          <Lightbox src={lightboxImg} onClose={() => setLightboxImg(null)} />
+        )}
       </Router>
     </AppProvider>
   );
