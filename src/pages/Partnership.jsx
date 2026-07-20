@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SEO from '../components/SEO';
 import { Handshake, Map, Send, Users, Briefcase, Building, CheckCircle, ArrowRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -38,6 +39,7 @@ const Partnership = () => {
 
   return (
     <div className="page-transition">
+      <SEO title="Partenariat" description="Devenez partenaire de la Ferme Agroécologique des Niayes. Opportunités d’investissement, collaborations B2B et projets durables." keywords="partenariat agricole, investissement agroécologie, collaboration B2B, RSE Sénégal" />
 
       {/* ===== Hero Section — nature photo + text card ===== */}
       <section style={{

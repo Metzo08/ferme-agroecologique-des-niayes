@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import SEO from '../components/SEO';
 import { AppContext } from '../context/AppContext';
 import { 
   GraduationCap, Calendar, Clock, MapPin, CheckCircle, 
@@ -61,6 +62,7 @@ const Trainings = () => {
 
   return (
     <div style={{ backgroundColor: 'var(--bg-sand)', minHeight: '100vh', paddingBottom: '80px' }}>
+      <SEO title="Formations Pratiques" description="Participez à nos formations en permaculture, gestion de pépinière, greffage et irrigation solaire. Apprenez l’agroécologie." keywords="formation permaculture Sénégal, formation agricole, greffage, irrigation solaire" />
 
       {/* ─── HERO SECTION ─── */}
       <section style={{

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react';
+import SEO from '../components/SEO';
 import { useLocation } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import { MapPin, CheckCircle, Leaf } from 'lucide-react';
@@ -25,6 +26,7 @@ const Farms = () => {
 
   return (
     <div style={{ backgroundColor: 'var(--bg-sand)', minHeight: '100vh', paddingBottom: '80px' }}>
+      <SEO title="Nos Fermes" description="Visitez nos fermes agroécologiques à Mboro et Ngaparou. Des espaces dédiés à l’agriculture durable, la permaculture et la biodiversité au Sénégal." keywords="ferme Mboro, ferme Ngaparou, agriculture durable, permaculture, visite ferme" />
       
       {/* Hero Header Dynamique selon la ferme */}
       {(() => {

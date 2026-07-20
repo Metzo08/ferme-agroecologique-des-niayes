@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { 
   Fish, Droplets, Leaf, ArrowLeft, GraduationCap, 
@@ -42,6 +43,7 @@ const Pisciculture = () => {
 
   return (
     <div style={{ backgroundColor: 'var(--bg-sand)', minHeight: '100vh', paddingBottom: '80px' }}>
+      <SEO title="Pisciculture & Aquaponie" description="Découvrez nos systèmes intégrés de pisciculture et aquaponie. Élevage de poissons et culture de plantes en symbiose." keywords="pisciculture Sénégal, aquaponie, élevage de poissons, agriculture circulaire" />
       
       {/* Hero Section dédiée à la Pisciculture */}
       <section style={{ 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { 
   Droplets, Leaf, ArrowLeft, GraduationCap, 
@@ -37,6 +38,7 @@ const Transformation = () => {
 
   return (
     <div style={{ backgroundColor: 'var(--bg-sand)', minHeight: '100vh', paddingBottom: '80px' }}>
+      <SEO title="Transformation" description="Produits transformés issus de nos fermes : jus naturels, confitures, huiles essentielles et cosmétiques naturels fabriqués au Sénégal." keywords="produits transformés bio, jus naturels Sénégal, cosmétiques naturels" />
       
       {/* Hero Section Transformation */}
       <section style={{ 

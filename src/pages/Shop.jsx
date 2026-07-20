@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import SEO from '../components/SEO';
 import { AppContext } from '../context/AppContext';
 import { 
   ShoppingCart, Tag, Filter, CheckCircle, 
@@ -52,6 +53,7 @@ const Shop = () => {
 
   return (
     <div style={{ backgroundColor: 'var(--bg-sand)', minHeight: '100vh', paddingBottom: '80px' }}>
+      <SEO title="Boutique & Équipements" description="Vente de matériel agricole, engrais organiques, compost, biochar et systèmes d’irrigation pour l’agriculture écologique au Sénégal." keywords="matériel agricole Sénégal, engrais bio, compost, biochar, irrigation, outillage" />
 
       {/* ─── HERO SECTION ─── */}
       <section style={{

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import SEO from '../components/SEO';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import { MapPin, Sprout, Tent, Wrench, GraduationCap, ArrowRight, Star, Fish, Hexagon, Droplets } from 'lucide-react';
@@ -15,6 +16,7 @@ const Home = () => {
 
   return (
     <div>
+      <SEO title="Accueil" description="Découvrez la Ferme Agroécologique des Niayes : pépinière bio, vente de plantes, matériel agricole, formations pratiques et éco-camping au Sénégal." keywords="ferme agroécologique, Niayes, Sénégal, Mboro, Ngaparou, pépinière, éco-camping" />
       {/* Bannière Héroïque */}
       <section style={{ 
         position: 'relative', 

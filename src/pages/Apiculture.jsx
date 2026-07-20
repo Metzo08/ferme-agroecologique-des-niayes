@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SEO from '../components/SEO';
 import { Link } from 'react-router-dom';
 import { 
   Hexagon, Droplets, Leaf, ArrowLeft, GraduationCap, 
@@ -37,6 +38,7 @@ const Apiculture = () => {
 
   return (
     <div style={{ backgroundColor: 'var(--bg-sand)', minHeight: '100vh', paddingBottom: '80px' }}>
+      <SEO title="Apiculture" description="Production de miel bio et services de pollinisation. Découvrez nos ruches écologiques et nos produits de la ruche de haute qualité." keywords="apiculture Sénégal, miel bio, ruche écologique, pollinisation" />
       
       {/* Hero Section Apiculture */}
       <section style={{ 

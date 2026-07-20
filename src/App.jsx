@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import { AppProvider } from './context/AppContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -42,7 +43,8 @@ function App() {
   }, []);
 
   return (
-    <AppProvider>
+    <HelmetProvider>
+      <AppProvider>
       <Router>
         {/* ScrollToTop remet la page en haut à chaque changement de route */}
         <ScrollToTop />
@@ -74,6 +76,7 @@ function App() {
         )}
       </Router>
     </AppProvider>
+    </HelmetProvider>
   );
 }
 

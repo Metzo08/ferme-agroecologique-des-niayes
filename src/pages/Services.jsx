@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import SEO from '../components/SEO';
 import { AppContext } from '../context/AppContext';
 import { Wrench, Leaf, Settings, Send, CheckCircle, ArrowRight } from 'lucide-react';
 
@@ -67,6 +68,7 @@ const Services = () => {
 
   return (
     <div>
+      <SEO title="Aménagements & Services" description="Services d’aménagement d’espaces verts, paysagisme, création de jardins écologiques et agroforesterie pour particuliers et professionnels." keywords="aménagement espace vert Sénégal, paysagiste, création jardin, agroforesterie" />
 
       {/* ── Hero ── */}
       <section style={{

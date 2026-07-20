@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import SEO from '../components/SEO';
 import { AppContext } from '../context/AppContext';
 import { 
   ShoppingCart, Leaf, Droplets, Sun, Info, 
@@ -71,6 +72,7 @@ const Nursery = () => {
 
   return (
     <div style={{ backgroundColor: 'var(--bg-sand)', minHeight: '100vh', paddingBottom: '80px' }}>
+      <SEO title="Pépinière" description="Achetez nos plantes aromatiques, médicinales, fruitières et ornementales bio cultivées au Sénégal. Qualité garantie pour vos aménagements verts." keywords="pépinière bio Sénégal, vente plantes, Moringa, Menthe, agroécologie" />
 
       {/* ─── HERO SECTION ─── */}
       <section style={{

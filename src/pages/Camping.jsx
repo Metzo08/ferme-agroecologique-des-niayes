@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import SEO from '../components/SEO';
 import { AppContext } from '../context/AppContext';
 import { Tent, ShieldCheck, MapPin, Calendar, Users, Info } from 'lucide-react';
 import PaymentSimulator from '../components/PaymentSimulator';
@@ -56,6 +57,7 @@ const Camping = () => {
 
   return (
     <div style={{ backgroundColor: 'var(--bg-sand)' }}>
+      <SEO title="Séjours Nature & Camping" description="Réservez votre séjour éco-touristique dans nos campings nature. Tentes sahariennes, emplacements sous les eucalyptus et éco-campements." keywords="camping Sénégal, éco-tourisme, hébergement nature, tente saharienne, Mboro" />
 
       {/* Hero Section Camping - backgroundImage directement sur section */}
       <section style={{ 
