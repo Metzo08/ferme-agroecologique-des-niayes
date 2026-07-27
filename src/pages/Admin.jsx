@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 import { 
   LayoutDashboard, Users, ShoppingBag, Tent, BookOpen, PlusCircle, 
-  CheckCircle, Image, Globe, Tag, Heart, Droplets, Sun, Sparkles, RefreshCw, Upload
+  CheckCircle, Image, Globe, Tag, Heart, Droplets, Sun, Sparkles, RefreshCw, Upload, LogIn, LogOut
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -11,6 +11,11 @@ const Admin = () => {
     campingReservations, trainingInscriptions, shopOrders,
     adminAddPlant, adminAddEquipment, adminAddTraining, adminAddCampingSpot 
   } = useContext(AppContext);
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   // Onglet actif : 'dashboard', 'product', 'training', 'camping'
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -48,6 +53,23 @@ const Admin = () => {
   const [campingForm, setCampingForm] = useState({
     name: '', type: 'Nu', price: '', capacity: '', location: 'Mboro', image: '', description: ''
   });
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (email === 'niayes@gmail.com' && password === 'Khondio2026') {
+      setIsLoggedIn(true);
+      setError('');
+    } else {
+      setError('Email ou mot de passe incorrect.');
+    }
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setEmail('');
+    setPassword('');
+  };
+
 
   // Calcul du chiffre d'affaires
   const totalVentes = shopOrders.reduce((acc, order) => acc + order.total, 0);
@@ -181,6 +203,44 @@ const Admin = () => {
     setCampingFileKey(prev => prev + 1);
   };
 
+  if (!isLoggedIn) {
+    return (
+      <div className="section" style={{ backgroundColor: '#F5F7FA', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="card" style={{ maxWidth: '400px', width: '100%', padding: '40px', textAlign: 'center', boxShadow: '0 10px 30px rgba(0,0,0,0.05)' }}>
+          <LayoutDashboard size={48} color="var(--primary)" style={{ marginBottom: '20px' }} />
+          <h1 style={{ marginBottom: '20px' }}>Accès Admin</h1>
+          <form onSubmit={handleLogin}>
+            <div className="form-group" style={{ marginBottom: '16px' }}>
+              <input 
+                type="email" 
+                className="form-control" 
+                placeholder="Email" 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)} 
+                required 
+              />
+            </div>
+            <div className="form-group" style={{ marginBottom: '20px' }}>
+              <input 
+                type="password" 
+                className="form-control" 
+                placeholder="Mot de passe" 
+                value={password} 
+                onChange={(e) => setPassword(e.target.value)} 
+                required 
+              />
+            </div>
+            {error && <p style={{ color: 'red', marginBottom: '20px' }}>{error}</p>}
+            <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '12px', fontSize: '1rem' }}>
+              <LogIn size={20} style={{ marginRight: '8px' }} />
+              Se connecter
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="section" style={{ backgroundColor: '#F5F7FA', minHeight: '100vh', paddingBottom: '80px' }}>
       <div className="container">
@@ -193,6 +253,16 @@ const Admin = () => {
           </div>
           
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+             <button 
+              onClick={handleLogout} 
+              style={{
+                backgroundColor: 'var(--white)', color: 'var(--text-charcoal)',
+                border: '1px solid var(--border-color)', borderRadius: '8px', padding: '10px 20px',
+                fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px'
+              }}
+            >
+              <LogOut size={18} /> Déconnexion
+            </button>
             <button 
               onClick={() => setActiveTab('dashboard')} 
               style={{
