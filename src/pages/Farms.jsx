@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import SEO from '../components/SEO';
 import { useLocation } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
-import { MapPin, CheckCircle, Leaf } from 'lucide-react';
+import { MapPin, CheckCircle, Leaf, Phone } from 'lucide-react';
 import MapLocation from '../components/MapLocation';
 
 const Farms = () => {
@@ -145,9 +145,14 @@ const Farms = () => {
                 <span className="badge badge-mboro" style={{ marginBottom: '24px', fontSize: '0.9rem', display: 'inline-block' }}>Site principal & production</span>
                 <h2 style={{ color: 'var(--primary)', marginBottom: '16px', fontSize: '2.2rem' }}>Domaine de Mboro (Khondio)</h2>
                 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', marginBottom: '24px', fontSize: '1.1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', marginBottom: '12px', fontSize: '1.1rem' }}>
                   <MapPin size={22} color="var(--primary)" />
-                  <span>Commune de Mboro, département de Tivaouane, région de Thiès, Sénégal</span>
+                  <span>Commune de Mboro, village de Khondio, Sénégal</span>
+                </div>
+                
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--primary)', marginBottom: '24px', fontSize: '1.05rem', fontWeight: 700 }}>
+                  <Phone size={20} color="var(--primary)" />
+                  <a href="tel:+221779167297" style={{ color: 'var(--primary)', textDecoration: 'none' }}>+221 77 916 72 97</a>
                 </div>
                 
                 <p style={{ marginBottom: '24px', lineHeight: 1.8, fontSize: '1.05rem', color: 'var(--text-charcoal)' }}>
@@ -155,11 +160,12 @@ const Farms = () => {
                 </p>
 
                 <div style={{ backgroundColor: '#F4FAF4', padding: '20px', borderRadius: 'var(--radius-md)', marginBottom: '24px', fontSize: '0.95rem', borderLeft: '4px solid var(--primary)' }}>
-                  <h4 style={{ marginBottom: '10px', color: 'var(--primary)', fontSize: '1.05rem' }}>Informations administratives :</h4>
+                  <h4 style={{ marginBottom: '10px', color: 'var(--primary)', fontSize: '1.05rem' }}>Informations administratives & Contact :</h4>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '8px', color: 'var(--text-charcoal)' }}>
                     <div><strong>Propriétaire :</strong> Abdou Karim Mbengue</div>
+                    <div><strong>Contact :</strong> +221 77 916 72 97</div>
                     <div><strong>Ninéa :</strong> 004346583</div>
-                    <div><strong>Registre de commerce :</strong> SN.MBR.2025.A.3642</div>
+                    <div><strong>Registre :</strong> SN.MBR.2025.A.3642</div>
                   </div>
                 </div>
                 
@@ -264,9 +270,14 @@ const Farms = () => {
                 <span className="badge badge-ngaparou" style={{ marginBottom: '24px', fontSize: '0.9rem', display: 'inline-block' }}>Site touristique & aménagements</span>
                 <h2 style={{ color: 'var(--accent)', marginBottom: '16px', fontSize: '2.2rem' }}>Oasis de Ngaparou (Mbour)</h2>
                 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', marginBottom: '32px', fontSize: '1.1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-muted)', marginBottom: '12px', fontSize: '1.1rem' }}>
                   <MapPin size={22} color="var(--accent)" />
-                  <span>Petite-Côte, Sénégal</span>
+                  <span>Route de la Somone, Ngaparou, Petite-Côte, Sénégal</span>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--accent)', marginBottom: '24px', fontSize: '1.05rem', fontWeight: 700 }}>
+                  <Phone size={20} color="var(--accent)" />
+                  <a href="tel:+221766565586" style={{ color: 'var(--accent)', textDecoration: 'none' }}>+221 76 656 55 86</a>
                 </div>
                 
                 <p style={{ marginBottom: '32px', lineHeight: 1.8, fontSize: '1.05rem', color: 'var(--text-charcoal)' }}>

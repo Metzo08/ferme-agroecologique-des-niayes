@@ -70,7 +70,7 @@ const Footer = () => {
           {/* Site Mboro */}
           <div>
             <h4 style={{ color: 'var(--primary-light)', marginBottom: '16px', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span className="badge badge-mboro" style={{ margin: 0 }}>Mboro</span>
+              <span className="badge badge-mboro" style={{ margin: 0 }}>Mboro (Khondio)</span>
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <li style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', color: '#A0A0A0', fontSize: '0.9rem' }}>
@@ -78,11 +78,11 @@ const Footer = () => {
                 <span>Zone des Niayes, Village de Khondio, Mboro, Sénégal</span>
               </li>
               <li>
-                <a href="tel:+221771234567" style={{ display: 'flex', gap: '10px', alignItems: 'center', color: '#A0A0A0', fontSize: '0.9rem', transition: 'color 0.2s' }}
+                <a href="tel:+221779167297" style={{ display: 'flex', gap: '10px', alignItems: 'center', color: '#A0A0A0', fontSize: '0.9rem', transition: 'color 0.2s' }}
                    onMouseEnter={(e) => e.currentTarget.style.color = 'white'}
                    onMouseLeave={(e) => e.currentTarget.style.color = '#A0A0A0'}>
                   <Phone size={16} color="var(--primary)" />
-                  <span>+221 77 123 45 67</span>
+                  <span>+221 77 916 72 97</span>
                 </a>
               </li>
               <li>
@@ -107,11 +107,11 @@ const Footer = () => {
                 <span>Route de la Somone, Ngaparou, Petite-Côte, Sénégal</span>
               </li>
               <li>
-                <a href="tel:+221769876543" style={{ display: 'flex', gap: '10px', alignItems: 'center', color: '#A0A0A0', fontSize: '0.9rem', transition: 'color 0.2s' }}
+                <a href="tel:+221766565586" style={{ display: 'flex', gap: '10px', alignItems: 'center', color: '#A0A0A0', fontSize: '0.9rem', transition: 'color 0.2s' }}
                    onMouseEnter={(e) => e.currentTarget.style.color = 'white'}
                    onMouseLeave={(e) => e.currentTarget.style.color = '#A0A0A0'}>
                   <Phone size={16} color="var(--accent)" />
-                  <span>+221 76 987 65 43</span>
+                  <span>+221 76 656 55 86</span>
                 </a>
               </li>
               <li>
