@@ -10,7 +10,7 @@ import confetti from 'canvas-confetti';
 const Admin = () => {
   const { 
     plants, equipment, trainings, campingSpots,
-    campingReservations, trainingInscriptions, shopOrders,
+    campingReservations, trainingInscriptions, shopOrders, visitorCount,
     adminAddPlant, adminAddEquipment, adminAddTraining, adminAddCampingSpot,
     adminUpdatePlant, adminUpdateEquipment, adminUpdateTraining, adminUpdateCampingSpot,
     adminDeletePlant, adminDeleteEquipment, adminDeleteTraining, adminDeleteCampingSpot
@@ -76,11 +76,11 @@ const Admin = () => {
     setPassword('');
   };
 
-  // Calcul du chiffre d'affaires
-  const totalVentes = shopOrders.reduce((acc, order) => acc + order.total, 0);
+  // Calcul du chiffre d'affaires réel
+  const totalVentes = shopOrders.reduce((acc, order) => acc + (order.total || 0), 0);
 
   const stats = [
-    { label: 'Visiteurs (aujourd\'hui)', value: '142', icon: <Users size={24} color="#1565C0" />, bg: '#E3F2FD' },
+    { label: 'Visiteurs (aujourd\'hui)', value: (visitorCount || 1).toString(), icon: <Users size={24} color="#1565C0" />, bg: '#E3F2FD' },
     { label: 'Ventes e-commerce', value: `${totalVentes.toLocaleString('fr-FR')} F`, icon: <ShoppingBag size={24} color="var(--primary)" />, bg: 'var(--primary-light)' },
     { label: 'Réservations camping', value: campingReservations.length.toString(), icon: <Tent size={24} color="var(--accent)" />, bg: 'var(--accent-light)' },
     { label: 'Inscrits formations', value: trainingInscriptions.length.toString(), icon: <BookOpen size={24} color="#E65100" />, bg: '#FFF3E0' },

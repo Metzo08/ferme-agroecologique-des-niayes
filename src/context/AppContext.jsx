@@ -526,76 +526,43 @@ export const AppProvider = ({ children }) => {
     return local ? JSON.parse(local) : [];
   });
 
-  // Base de données des réservations de camping
+  // Visiteurs du jour réels (session & localStorage)
+  const [visitorCount, setVisitorCount] = useState(() => {
+    const todayStr = new Date().toISOString().split('T')[0];
+    const key = `niayes_visitor_count_${todayStr}`;
+    const stored = localStorage.getItem(key);
+    let count = stored ? parseInt(stored, 10) : 0;
+
+    if (!sessionStorage.getItem('niayes_visited_session')) {
+      sessionStorage.setItem('niayes_visited_session', 'true');
+      count += 1;
+      localStorage.setItem(key, count.toString());
+    }
+    return Math.max(count, 1);
+  });
+
+  // Base de données des réservations de camping (démarre vide sans mock data)
   const [campingReservations, setCampingReservations] = useState(() => {
     const local = localStorage.getItem('niayes_camping_reservations');
-    return local ? JSON.parse(local) : [
-      {
-        id: 'r_mock_1',
-        nom_client: 'Abdoulaye Diop',
-        telephone_client: '776543210',
-        email_client: 'a.diop@gmail.com',
-        date_debut: '2026-06-05',
-        date_fin: '2026-06-07',
-        statut_paiement: 'Payé',
-        montant_total: 50000,
-        emplacement_nom: 'Tente Saharienne Équipée Premium',
-        ferme: 'Ngaparou'
-      }
-    ];
+    return local ? JSON.parse(local) : [];
   });
 
-  // Base de données des inscriptions aux formations
+  // Base de données des inscriptions aux formations (démarre vide sans mock data)
   const [trainingInscriptions, setTrainingInscriptions] = useState(() => {
     const local = localStorage.getItem('niayes_training_inscriptions');
-    return local ? JSON.parse(local) : [
-      {
-        id: 'i_mock_1',
-        nom_apprenant: 'Fatou Sow',
-        telephone: '761234567',
-        email: 'fatousow@yahoo.fr',
-        formation_titre: 'Perma-Niayes : Initiation à la Permaculture Sahélienne',
-        statut_paiement: 'Acompte',
-        montant_paye: 15000
-      }
-    ];
+    return local ? JSON.parse(local) : [];
   });
 
-  // Base de données des demandes de devis (Espaces verts / Construction)
+  // Base de données des demandes de devis (démarre vide sans mock data)
   const [devisRequests, setDevisRequests] = useState(() => {
     const local = localStorage.getItem('niayes_devis_requests');
-    return local ? JSON.parse(local) : [
-      {
-        id: 'd_mock_1',
-        nom_demandeur: 'Hôtel Baobab Resort',
-        entreprise_collectivite: 'Baobab Hospitality Group',
-        email: 'contact@baobabresort.sn',
-        telephone: '779998877',
-        type_service: 'Espaces verts',
-        details_projet: 'Création d\'un jardin d\'ornement résistant à la salinité pour notre extension côtière à Somone. Nous souhaitons intégrer des bougainvilliers, cocotiers et filaos.',
-        statut: 'En étude',
-        date: '2026-05-26'
-      }
-    ];
+    return local ? JSON.parse(local) : [];
   });
 
-  // Commandes e-commerce
+  // Commandes e-commerce (démarre vide sans mock data)
   const [shopOrders, setShopOrders] = useState(() => {
     const local = localStorage.getItem('niayes_shop_orders');
-    return local ? JSON.parse(local) : [
-      {
-        id: 'o_mock_1',
-        nom_client: 'Mamadou Diallo',
-        telephone: '754445566',
-        items: [
-          { name: 'Kit Irrigation Goutte-à-Goutte Solaire (100 m²)', qty: 1, price: 135000 },
-          { name: 'Compost Organique des Niayes (Sac 25kg)', qty: 10, price: 3500 }
-        ],
-        total: 170000,
-        statut_paiement: 'Payé',
-        date: '2026-05-25'
-      }
-    ];
+    return local ? JSON.parse(local) : [];
   });
 
   // Filtre géographique global de navigation
@@ -827,6 +794,7 @@ export const AppProvider = ({ children }) => {
         trainings,
         campingSpots,
         cart,
+        visitorCount,
         campingReservations,
         trainingInscriptions,
         devisRequests,
