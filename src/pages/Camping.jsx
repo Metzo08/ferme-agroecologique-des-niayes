@@ -182,7 +182,12 @@ const Camping = () => {
           {filteredSpots.map(spot => (
             <div key={spot.id} className="card animate-slide">
               <div className="card-img-wrapper">
-                <img src={spot.image} alt={spot.name} className="card-img" />
+                <img 
+                  src={spot.image} 
+                  alt={spot.name} 
+                  className="card-img" 
+                  onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/images/camping.webp'; }}
+                />
                 <span className={`badge badge-${spot.location.toLowerCase()}`} style={{ position: 'absolute', top: '12px', right: '12px' }}>
                   {spot.location}
                 </span>

@@ -273,7 +273,12 @@ const Nursery = () => {
               {filteredPlants.map(plant => (
                 <div key={plant.id} className="card hover-scale" style={{ border: 'none', padding: 0, overflow: 'hidden', boxShadow: '0 8px 28px rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column' }}>
                   <div className="card-img-wrapper" style={{ height: '240px', cursor: 'pointer' }} onClick={() => setSelectedPlant(plant)}>
-                    <img src={plant.image} alt={plant.name} className="card-img" />
+                    <img 
+                      src={plant.image} 
+                      alt={plant.name} 
+                      className="card-img" 
+                      onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/images/garden.jpg'; }}
+                    />
                     <div style={{ position: 'absolute', top: '16px', right: '16px', display: 'flex', gap: '6px' }}>
                       {(plant.location === 'mboro' || plant.location === 'both') && (
                         <span className="badge badge-mboro" style={{ boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>Mboro</span>

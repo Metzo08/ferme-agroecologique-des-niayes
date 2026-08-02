@@ -17,10 +17,20 @@ const PaymentSimulator = ({ amount, isOpen, onClose, onSuccess }) => {
     setStep(2);
   };
 
+  // Nettoyage tolérant du numéro de téléphone (enlève espaces, tirets, +221 ou 221)
+  const cleanPhone = (val) => {
+    let cleaned = val.replace(/\D/g, '');
+    if (cleaned.startsWith('221') && cleaned.length >= 12) {
+      cleaned = cleaned.slice(3);
+    }
+    return cleaned;
+  };
+
   const handlePhoneSubmit = (e) => {
     e.preventDefault();
-    if (phone.length < 9) {
-      setError('Veuillez entrer un numéro valide (ex: 771234567)');
+    const digitsOnly = cleanPhone(phone);
+    if (digitsOnly.length < 9) {
+      setError('Veuillez entrer un numéro valide (ex: 77 123 45 67 ou 771234567)');
       return;
     }
     setError('');
@@ -140,8 +150,7 @@ const PaymentSimulator = ({ amount, isOpen, onClose, onSuccess }) => {
                   style={{ paddingLeft: '64px' }}
                   placeholder="77 123 45 67"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value.replace(/\D/g, ''))}
-                  maxLength={9}
+                  onChange={(e) => setPhone(e.target.value)}
                   autoFocus
                 />
               </div>

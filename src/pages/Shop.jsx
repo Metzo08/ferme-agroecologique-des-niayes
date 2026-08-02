@@ -244,7 +244,11 @@ const Shop = () => {
                 <div key={item.id} className="card hover-scale" style={{ display: 'flex', flexDirection: 'column', border: 'none', padding: 0, overflow: 'hidden', boxShadow: '0 8px 24px rgba(0,0,0,0.06)' }}>
                   <div style={{ height: '220px', overflow: 'hidden', position: 'relative', backgroundColor: '#F5F5F5', cursor: 'pointer' }} onClick={() => setSelectedProduct(item)}>
                     {item.image ? (
-                      <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }}
+                      <img 
+                        src={item.image} 
+                        alt={item.name} 
+                        onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/images/irrigation.jpg'; }}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }}
                         onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.06)'}
                         onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                       />

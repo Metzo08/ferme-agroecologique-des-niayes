@@ -787,8 +787,36 @@ export const AppProvider = ({ children }) => {
     setPlants((prev) => prev.filter((p) => p.id !== id));
   };
 
+  const adminDeleteEquipment = (id) => {
+    setEquipment((prev) => prev.filter((e) => e.id !== id));
+  };
+
+  const adminDeleteTraining = (id) => {
+    setTrainings((prev) => prev.filter((t) => t.id !== id));
+  };
+
+  const adminDeleteCampingSpot = (id) => {
+    setCampingSpots((prev) => prev.filter((c) => c.id !== id));
+  };
+
   const adminUpdateDevisStatut = (id, newStatut) => {
     setDevisRequests((prev) => prev.map((d) => (d.id === id ? { ...d, statut: newStatut } : d)));
+  };
+
+  const adminUpdatePlant = (id, updatedPlant) => {
+    setPlants((prev) => prev.map((p) => (p.id === id ? { ...p, ...updatedPlant } : p)));
+  };
+
+  const adminUpdateEquipment = (id, updatedEquipment) => {
+    setEquipment((prev) => prev.map((e) => (e.id === id ? { ...e, ...updatedEquipment } : e)));
+  };
+
+  const adminUpdateTraining = (id, updatedTraining) => {
+    setTrainings((prev) => prev.map((t) => (t.id === id ? { ...t, ...updatedTraining } : t)));
+  };
+
+  const adminUpdateCampingSpot = (id, updatedSpot) => {
+    setCampingSpots((prev) => prev.map((c) => (c.id === id ? { ...c, ...updatedSpot } : c)));
   };
 
   return (
@@ -819,7 +847,14 @@ export const AppProvider = ({ children }) => {
         adminAddCampingSpot,
         adminUpdatePlantStock,
         adminDeletePlant,
-        adminUpdateDevisStatut
+        adminDeleteEquipment,
+        adminDeleteTraining,
+        adminDeleteCampingSpot,
+        adminUpdateDevisStatut,
+        adminUpdatePlant,
+        adminUpdateEquipment,
+        adminUpdateTraining,
+        adminUpdateCampingSpot
       }}
     >
       {children}

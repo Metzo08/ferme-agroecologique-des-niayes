@@ -207,7 +207,11 @@ const Trainings = () => {
             {filteredTrainings.map(training => (
               <div key={training.id} className="card hover-scale" style={{ display: 'flex', flexDirection: 'column', padding: 0, overflow: 'hidden', border: 'none', boxShadow: '0 10px 28px rgba(0,0,0,0.06)' }}>
                 <div style={{ height: '230px', position: 'relative', overflow: 'hidden' }}>
-                  <img src={training.image} alt={training.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }}
+                  <img 
+                    src={training.image} 
+                    alt={training.title} 
+                    onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/images/training.jpg'; }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }}
                     onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.06)'}
                     onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
                   />

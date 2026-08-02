@@ -9,7 +9,9 @@ const Cart = () => {
   const [customerForm, setCustomerForm] = useState({ name: '', phone: '' });
   const [successMessage, setSuccessMessage] = useState('');
 
-  const total = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+  const subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+  const totalTransport = cart.reduce((acc, item) => acc + ((item.transportCost || 0) * item.qty), 0);
+  const grandTotal = subtotal + totalTransport;
 
   const handleCheckoutClick = (e) => {
     e.preventDefault();
@@ -22,7 +24,7 @@ const Cart = () => {
   };
 
   const handlePaymentSuccess = () => {
-    const orderId = checkoutCart(customerForm, total);
+    const orderId = checkoutCart(customerForm, grandTotal);
     setShowPayment(false);
     setSuccessMessage(`Merci ${customerForm.name} ! Votre commande #${orderId} a été confirmée et payée avec succès.`);
     setCustomerForm({ name: '', phone: '' });
@@ -64,10 +66,20 @@ const Cart = () => {
             <div className="card" style={{ padding: '0' }}>
               {cart.map(item => (
                 <div key={item.id} style={{ display: 'flex', padding: '20px', borderBottom: '1px solid var(--border-color)', gap: '20px', alignItems: 'center' }}>
-                  <img src={item.image} alt={item.name} style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: 'var(--radius-sm)' }} />
+                  <img 
+                    src={item.image} 
+                    alt={item.name} 
+                    onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/images/garden.jpg'; }}
+                    style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: 'var(--radius-sm)' }} 
+                  />
                   <div style={{ flexGrow: 1 }}>
                     <h4 style={{ margin: 0, marginBottom: '8px' }}>{item.name}</h4>
                     <span style={{ color: 'var(--primary)', fontWeight: 'bold' }}>{item.price.toLocaleString('fr-FR')} FCFA</span>
+                    {item.transportCost > 0 && (
+                      <span style={{ display: 'block', fontSize: '0.8rem', color: 'var(--text-muted)', marginTop: '4px' }}>
+                        Transport: {item.transportCost.toLocaleString('fr-FR')} FCFA / unité
+                      </span>
+                    )}
                   </div>
                   
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -89,17 +101,17 @@ const Cart = () => {
               <h3 style={{ marginBottom: '24px' }}>Résumé de la commande</h3>
               
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px' }}>
-                <span style={{ color: 'var(--text-muted)' }}>Sous-total</span>
-                <span>{total.toLocaleString('fr-FR')} FCFA</span>
+                <span style={{ color: 'var(--text-muted)' }}>Sous-total articles</span>
+                <span>{subtotal.toLocaleString('fr-FR')} FCFA</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '24px', paddingBottom: '24px', borderBottom: '1px solid var(--border-color)' }}>
-                <span style={{ color: 'var(--text-muted)' }}>Livraison (Sénégal)</span>
-                <span>À calculer</span>
+                <span style={{ color: 'var(--text-muted)' }}>Frais de transport & livraison</span>
+                <span>{totalTransport > 0 ? `${totalTransport.toLocaleString('fr-FR')} FCFA` : 'Inclus / Gratuit'}</span>
               </div>
               
               <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '32px', fontSize: '1.2rem', fontWeight: 'bold' }}>
-                <span>Total</span>
-                <span style={{ color: 'var(--primary)' }}>{total.toLocaleString('fr-FR')} FCFA</span>
+                <span>Total à régler</span>
+                <span style={{ color: 'var(--primary)' }}>{grandTotal.toLocaleString('fr-FR')} FCFA</span>
               </div>
 
               <form onSubmit={handleCheckoutClick}>
@@ -108,8 +120,8 @@ const Cart = () => {
                   <input type="text" className="form-control" required value={customerForm.name} onChange={e => setCustomerForm({...customerForm, name: e.target.value})} />
                 </div>
                 <div className="form-group" style={{ marginBottom: '24px' }}>
-                  <label className="form-label">Numéro de téléphone (pour livraison et paiement)</label>
-                  <input type="tel" className="form-control" required placeholder="77 123 45 67" value={customerForm.phone} onChange={e => setCustomerForm({...customerForm, phone: e.target.value})} />
+                  <label className="form-label">Numéro de téléphone (avec ou sans espaces)</label>
+                  <input type="tel" className="form-control" required placeholder="77 123 45 67 ou +221 77 123 45 67" value={customerForm.phone} onChange={e => setCustomerForm({...customerForm, phone: e.target.value})} />
                 </div>
                 
                 <button type="submit" className="btn btn-primary" style={{ width: '100%', display: 'flex', justifyContent: 'center', gap: '8px', padding: '12px' }}>
@@ -123,7 +135,7 @@ const Cart = () => {
 
         <PaymentSimulator 
           isOpen={showPayment} 
-          amount={total} 
+          amount={grandTotal} 
           onClose={() => setShowPayment(false)} 
           onSuccess={handlePaymentSuccess} 
         />
