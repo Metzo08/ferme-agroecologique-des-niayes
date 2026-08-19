@@ -3,10 +3,11 @@
 // =====================================================
 // Client API du navigateur → serveur Express (Node.js)
 // En développement : Vite proxy /api → http://localhost:3000
-// En production   : même origine (Express sert l'API + le site)
+// En production   : VITE_API_URL pointe vers l'API déployée
+//                   (ex: https://ferme-niayes-api.onrender.com)
 // =====================================================
 
-const BASE = '/api';
+const BASE = import.meta.env.VITE_API_URL || '/api';
 
 async function request(path, options = {}) {
   const res = await fetch(`${BASE}${path}`, {
