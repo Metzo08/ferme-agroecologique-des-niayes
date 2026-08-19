@@ -9,9 +9,22 @@
 
 const BASE = import.meta.env.VITE_API_URL || '/api';
 
+let adminToken = localStorage.getItem('ferme_admin_token') || null;
+
+export const setAdminToken = (token) => {
+  adminToken = token;
+  if (token) localStorage.setItem('ferme_admin_token', token);
+  else localStorage.removeItem('ferme_admin_token');
+};
+
+export const getAdminToken = () => adminToken;
+
 async function request(path, options = {}) {
+  const headers = { 'Content-Type': 'application/json' };
+  if (adminToken) headers['Authorization'] = `Bearer ${adminToken}`;
+
   const res = await fetch(`${BASE}${path}`, {
-    headers: { 'Content-Type': 'application/json' },
+    headers,
     ...options,
   });
 
@@ -24,6 +37,11 @@ async function request(path, options = {}) {
       // réponse non JSON
     }
     throw new Error(message);
+  }
+
+  if (res.status === 401) {
+    setAdminToken(null);
+    throw new Error('Session expirée. Veuillez vous reconnecter.');
   }
 
   if (res.status === 204) return null;
@@ -58,13 +76,24 @@ export const loginAdmin = async (email, password) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
     });
+    const body = await response.json().catch(() => ({}));
     if (!response.ok) {
-      throw new Error(`Erreur HTTP: ${response.status}`);
+      throw new Error(body.error || `Erreur HTTP: ${response.status}`);
     }
-    return await response.json();
+    if (body.token) setAdminToken(body.token);
+    return body;
   } catch (error) {
     console.error("Erreur lors de la connexion admin:", error);
     throw error;
+  }
+};
+
+export const checkAdminToken = async () => {
+  try {
+    await request('/admin/check');
+    return true;
+  } catch {
+    return false;
   }
 };
 

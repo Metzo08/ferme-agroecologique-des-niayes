@@ -7,6 +7,7 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import pool from './db.js';
 import { CREATE_TABLES } from './schema.js';
@@ -20,6 +21,40 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
+// ── Authentification admin (identifiants UNIQUEMENT côté serveur) ──
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || '';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '';
+const TOKEN_TTL_MS = 1000 * 60 * 60 * 12; // 12 heures
+const adminTokens = new Set();
+
+app.post('/api/admin/login', (req, res) => {
+  const { email, password } = req.body || {};
+  if (!ADMIN_EMAIL || !ADMIN_PASSWORD) {
+    return res.status(500).json({ error: 'Admin non configuré sur le serveur (ADMIN_EMAIL / ADMIN_PASSWORD)' });
+  }
+  if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+    const token = crypto.randomBytes(32).toString('hex');
+    adminTokens.add(token);
+    setTimeout(() => adminTokens.delete(token), TOKEN_TTL_MS);
+    return res.json({ token });
+  }
+  return res.status(401).json({ error: 'Email ou mot de passe incorrect' });
+});
+
+app.get('/api/admin/check', (req, res) => {
+  const token = (req.headers.authorization || '').replace(/^Bearer\s+/i, '');
+  if (!token || !adminTokens.has(token)) return res.status(401).json({ error: 'Non autorisé' });
+  res.json({ ok: true });
+});
+
+const requireAuth = (req, res, next) => {
+  const token = (req.headers.authorization || '').replace(/^Bearer\s+/i, '');
+  if (!token || !adminTokens.has(token)) {
+    return res.status(401).json({ error: 'Non autorisé' });
+  }
+  next();
+};
+
 // ── Santé du serveur ──
 app.get('/api/health', async (req, res) => {
   try {
@@ -31,7 +66,7 @@ app.get('/api/health', async (req, res) => {
 });
 
 // ── Fabrique de routes CRUD ──
-function createCrudRoutes(table, key, normalize) {
+function createCrudRoutes(table, key, normalize, protectedRoutes = false) {
   const list = async (req, res) => {
     try {
       const { rows } = await pool.query(`SELECT * FROM "${table}" ORDER BY "created_at" ASC`);
@@ -85,9 +120,9 @@ function createCrudRoutes(table, key, normalize) {
   };
 
   app.get(`/api/${key}`, list);
-  app.post(`/api/${key}`, insert);
-  app.put(`/api/${key}/:id`, update);
-  app.delete(`/api/${key}/:id`, remove);
+  app.post(`/api/${key}`, protectedRoutes ? [requireAuth, insert] : insert);
+  app.put(`/api/${key}/:id`, protectedRoutes ? [requireAuth, update] : update);
+  app.delete(`/api/${key}/:id`, protectedRoutes ? [requireAuth, remove] : remove);
 }
 
 const identity = (x) => x;
@@ -101,10 +136,10 @@ const normalizeOrder = (o) => {
   return { ...o, items: items || [] };
 };
 
-createCrudRoutes('plantes', 'plantes', identity);
-createCrudRoutes('equipements', 'equipements', identity);
-createCrudRoutes('formations', 'formations', identity);
-createCrudRoutes('camping_spots', 'camping_spots', identity);
+createCrudRoutes('plantes', 'plantes', identity, true);
+createCrudRoutes('equipements', 'equipements', identity, true);
+createCrudRoutes('formations', 'formations', identity, true);
+createCrudRoutes('camping_spots', 'camping_spots', identity, true);
 createCrudRoutes('commandes', 'commandes', normalizeOrder);
 createCrudRoutes('reservations_camping', 'reservations_camping', identity);
 createCrudRoutes('inscriptions_formations', 'inscriptions_formations', identity);

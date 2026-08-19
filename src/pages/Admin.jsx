@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { AppContext } from '../context/AppContext';
+import { loginAdmin, checkAdminToken, setAdminToken } from '../services/api';
 import { 
   LayoutDashboard, Users, ShoppingBag, Tent, BookOpen, PlusCircle, 
   CheckCircle, Image, Globe, Tag, Heart, Droplets, Sun, Sparkles, RefreshCw, Upload, LogIn, LogOut,
-  Edit, Trash2, Truck, Sliders, X
+  Edit, Trash2, Truck, Sliders, X, Download
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -20,11 +21,16 @@ const Admin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loginLoading, setLoginLoading] = useState(false);
 
-  // Identifiants admin issus des variables d'environnement (jamais en dur)
-  // Voir .env.example — configurer VITE_ADMIN_EMAIL et VITE_ADMIN_PASSWORD
-  const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL || '';
-  const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || '';
+  // Vérifie automatiquement si une session admin existe déjà (token serveur)
+  useEffect(() => {
+    const restore = async () => {
+      const valid = await checkAdminToken();
+      setIsLoggedIn(valid);
+    };
+    restore();
+  }, []);
 
   // Onglet actif : 'dashboard', 'manage', 'product', 'training', 'camping'
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -65,20 +71,44 @@ const Admin = () => {
     name: '', type: 'Nu', price: '', capacity: '', location: 'Mboro', image: '', description: ''
   });
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+    setError('');
+    setLoginLoading(true);
+    try {
+      await loginAdmin(email, password);
       setIsLoggedIn(true);
-      setError('');
-    } else {
-      setError('Email ou mot de passe incorrect.');
+    } catch (err) {
+      setError(err.message || 'Email ou mot de passe incorrect.');
+    } finally {
+      setLoginLoading(false);
     }
   };
 
   const handleLogout = () => {
+    setAdminToken(null);
     setIsLoggedIn(false);
     setEmail('');
     setPassword('');
+  };
+
+  // Télécharger une sauvegarde JSON du catalogue complet
+  const handleExport = () => {
+    const data = {
+      exporte_le: new Date().toISOString(),
+      plantes: plants,
+      equipements: equipment,
+      formations: trainings,
+      camping_spots: campingSpots,
+    };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `catalogue-ferme-niayes-${new Date().toISOString().split('T')[0]}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+    triggerSuccess('Sauvegarde du catalogue téléchargée (JSON).');
   };
 
   // Calcul du chiffre d'affaires réel
@@ -300,9 +330,9 @@ const Admin = () => {
               />
             </div>
             {error && <p style={{ color: 'red', marginBottom: '20px' }}>{error}</p>}
-            <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '12px', fontSize: '1rem' }}>
+            <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '12px', fontSize: '1rem' }} disabled={loginLoading}>
               <LogIn size={20} style={{ marginRight: '8px' }} />
-              Se connecter
+              {loginLoading ? 'Connexion...' : 'Se connecter'}
             </button>
           </form>
         </div>
@@ -331,6 +361,17 @@ const Admin = () => {
               }}
             >
               <LogOut size={18} /> Déconnexion
+            </button>
+            <button 
+              onClick={handleExport} 
+              style={{
+                backgroundColor: 'var(--primary)', color: 'white',
+                border: 'none', borderRadius: '8px', padding: '10px 20px',
+                fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px',
+                boxShadow: '0 4px 12px rgba(21,101,192,0.2)'
+              }}
+            >
+              <Download size={18} /> Exporter le catalogue
             </button>
             <button 
               onClick={() => setActiveTab('dashboard')} 

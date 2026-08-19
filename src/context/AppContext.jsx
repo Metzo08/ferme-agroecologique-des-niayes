@@ -827,19 +827,27 @@ export const AppProvider = ({ children }) => {
 
   // Actions Administration CRUD pour l'utilisateur
   const adminAddPlant = (newPlant) => {
-    setPlants((prev) => [...prev, { ...newPlant, id: 'p_' + Date.now() }]);
+    const item = { ...newPlant, id: 'p_' + Date.now() };
+    setPlants((prev) => [...prev, item]);
+    api.plants.add(item).catch(() => {});
   };
 
   const adminAddEquipment = (newEquip) => {
-    setEquipment((prev) => [...prev, { ...newEquip, id: 'e_' + Date.now() }]);
+    const item = { ...newEquip, id: 'e_' + Date.now() };
+    setEquipment((prev) => [...prev, item]);
+    api.equipment.add(item).catch(() => {});
   };
 
   const adminAddTraining = (newTraining) => {
-    setTrainings((prev) => [...prev, { ...newTraining, id: 't_' + Date.now() }]);
+    const item = { ...newTraining, id: 't_' + Date.now() };
+    setTrainings((prev) => [...prev, item]);
+    api.trainings.add(item).catch(() => {});
   };
 
   const adminAddCampingSpot = (newSpot) => {
-    setCampingSpots((prev) => [...prev, { ...newSpot, id: 'c_' + Date.now() }]);
+    const item = { ...newSpot, id: 'c_' + Date.now() };
+    setCampingSpots((prev) => [...prev, item]);
+    api.campingSpots.add(item).catch(() => {});
   };
 
 const adminUpdatePlantStock = (id, newStock) => {
