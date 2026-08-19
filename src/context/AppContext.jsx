@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useRef } from 'react';
-import api from '../services/api';
+import api, { getAdminToken } from '../services/api';
 
 export const AppContext = createContext();
 
@@ -625,7 +625,7 @@ export const AppProvider = ({ children }) => {
   // (sauf pendant le chargement initial).
 
   useEffect(() => {
-    if (syncingRef.current) return;
+    if (syncingRef.current || !getAdminToken()) return;
     const t = setTimeout(() => {
       plants.forEach((item) => api.plants.add(item).catch(() => {}));
     }, 400);
@@ -633,7 +633,7 @@ export const AppProvider = ({ children }) => {
   }, [plants]);
 
   useEffect(() => {
-    if (syncingRef.current) return;
+    if (syncingRef.current || !getAdminToken()) return;
     const t = setTimeout(() => {
       equipment.forEach((item) => api.equipment.add(item).catch(() => {}));
     }, 400);
@@ -641,7 +641,7 @@ export const AppProvider = ({ children }) => {
   }, [equipment]);
 
   useEffect(() => {
-    if (syncingRef.current) return;
+    if (syncingRef.current || !getAdminToken()) return;
     const t = setTimeout(() => {
       trainings.forEach((item) => api.trainings.add(item).catch(() => {}));
     }, 400);
@@ -649,7 +649,7 @@ export const AppProvider = ({ children }) => {
   }, [trainings]);
 
   useEffect(() => {
-    if (syncingRef.current) return;
+    if (syncingRef.current || !getAdminToken()) return;
     const t = setTimeout(() => {
       campingSpots.forEach((item) => api.campingSpots.add(item).catch(() => {}));
     }, 400);
