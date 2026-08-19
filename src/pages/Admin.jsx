@@ -21,6 +21,11 @@ const Admin = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  // Identifiants admin issus des variables d'environnement (jamais en dur)
+  // Voir .env.example — configurer VITE_ADMIN_EMAIL et VITE_ADMIN_PASSWORD
+  const ADMIN_EMAIL = import.meta.env.VITE_ADMIN_EMAIL || '';
+  const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || '';
+
   // Onglet actif : 'dashboard', 'manage', 'product', 'training', 'camping'
   const [activeTab, setActiveTab] = useState('dashboard');
   const [manageSubTab, setManageSubTab] = useState('plant'); // 'plant', 'equip', 'training', 'camping'
@@ -62,7 +67,7 @@ const Admin = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (email === 'niayes@gmail.com' && password === 'Khondio2026') {
+    if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
       setIsLoggedIn(true);
       setError('');
     } else {

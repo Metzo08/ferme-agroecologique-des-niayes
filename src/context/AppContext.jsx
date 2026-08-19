@@ -1,4 +1,5 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useRef } from 'react';
+import api from '../services/api';
 
 export const AppContext = createContext();
 
@@ -419,100 +420,23 @@ export const AppProvider = ({ children }) => {
     localStorage.setItem('niayes_app_version', CURRENT_VERSION);
   }
 
-  // Chargement ou initialisation des données locales avec correction des images cassées
+// ─── Synchronisation avec la base PostgreSQL ───
+  // On charge depuis l'API (base partagée) au montage, avec le localStorage
+  // comme cache de secours si l'API n'est pas joignable.
+
   const [plants, setPlants] = useState(() => {
     const local = localStorage.getItem('niayes_plants');
-    let data = local ? JSON.parse(local) : INITIAL_PLANTS;
-    
-    // Merge INITIAL_PLANTS that are not present in data (avoids cache issues for new default plants)
-    const merged = [...data];
-    INITIAL_PLANTS.forEach(ip => {
-      if (!merged.some(p => p.id === ip.id)) {
-        merged.push(ip);
-      }
-    });
-
-    return merged.map(p => {
-      if (p.id === 'p1') p.image = '/images/menthe_poivree.jpg';
-      if (p.id === 'p2') p.image = '/images/moringa.jpg';
-      if (p.id === 'p3') p.image = '/images/bougainvillier.jpg';
-      if (p.id === 'p4') p.image = '/images/manguier_kent.jpg';
-      if (p.id === 'p5') p.image = '/images/citronnier_gallet.jpg';
-      if (p.id === 'p6') p.image = '/images/filaos.jpg';
-      if (p.id === 'p7') p.image = '/images/flamboyant.jpg';
-      if (p.id === 'p8') p.image = '/images/aloe_vera.jpg';
-      if (p.id === 'p9') p.image = '/images/chanvre_eau.jpg';
-      if (p.id === 'p10') p.image = '/images/sauge_officinale.jpg';
-      if (p.id === 'p11') p.image = '/images/achillee.jpg';
-      if (p.id === 'p12') p.image = '/images/lavande.jpg';
-      if (p.id === 'p13') p.image = '/images/celeri.jpg';
-      if (p.id === 'p14') p.image = '/images/romarin.jpg';
-      if (p.id === 'p15') p.image = '/images/origan_cubain.jpg';
-      if (p.id === 'p16') p.image = '/images/pois_angole.jpg';
-      if (p.id === 'p17') p.image = '/images/lantanier.jpg';
-      
-      // Fix broken unsplash links for user-added plants by replacing them with a default local image
-      if (p.image && p.image.includes('unsplash.com')) {
-         p.image = '/images/menthe_poivree.jpg'; // Default fallback
-      }
-      return p;
-    });
+    return local ? JSON.parse(local) : INITIAL_PLANTS;
   });
 
   const [equipment, setEquipment] = useState(() => {
     const local = localStorage.getItem('niayes_equipment');
-    let data = local ? JSON.parse(local) : INITIAL_EQUIPMENT;
-    
-    // Assurer que la catégorie et la localisation existent sur chaque équipement (migration)
-    const equipmentMetadata = {
-      'e1': { category: 'Matériel Agricole', location: 'both' },
-      'e2': { category: 'Fertilisants', location: 'mboro' },
-      'e3': { category: 'Fertilisants', location: 'mboro' },
-      'e4': { category: 'Matériel Agricole', location: 'both' },
-      'e5': { category: 'Apiculture', location: 'mboro' },
-      'e6': { category: 'Apiculture', location: 'mboro' },
-      'e7': { category: 'Transformation', location: 'ngaparou' },
-      'e8': { category: 'Transformation', location: 'ngaparou' },
-    };
-
-    return data.map(e => {
-      if (e.id === 'e1') e.image = '/images/irrigation.jpg';
-      if (e.id === 'e2') e.image = '/images/compost.jpg';
-      if (e.id === 'e3') e.image = '/images/biochar.jpg';
-      if (e.id === 'e4') e.image = '/images/sprayer.jpg';
-      if (e.id === 'e5') e.image = '/images/honey.jpg';
-      if (e.id === 'e6') e.image = '/images/beehives.jpg';
-      const meta = equipmentMetadata[e.id];
-      if (meta) {
-        e.category = meta.category;
-        e.location = meta.location;
-      }
-      return e;
-    });
+    return local ? JSON.parse(local) : INITIAL_EQUIPMENT;
   });
 
   const [trainings, setTrainings] = useState(() => {
     const local = localStorage.getItem('niayes_trainings');
-    let data = local ? JSON.parse(local) : INITIAL_TRAININGS;
-    // Correction forcée des titres (sentence case) et des images même si localStorage est en cache
-    const titleFixes = {
-      't1': 'Perma-Niayes : Initiation à la permaculture sahélienne',
-      't2': 'Gestion de pépinière professionnelle & greffage',
-      't3': 'Irrigation éco-intelligente & solaire',
-    };
-    const durationFixes = {
-      't1': '3 jours (vendredi - dimanche)',
-      't2': '2 jours (samedi - dimanche)',
-      't3': '2 jours (samedi - dimanche)',
-    };
-    return data.map(t => {
-      if (titleFixes[t.id]) t.title = titleFixes[t.id];
-      if (durationFixes[t.id]) t.duration = durationFixes[t.id];
-      if (t.id === 't1') t.image = '/images/training.jpg';
-      if (t.id === 't2') t.image = '/images/garden.jpg';
-      if (t.id === 't3') t.image = '/images/irrigation.jpg';
-      return t;
-    });
+    return local ? JSON.parse(local) : INITIAL_TRAININGS;
   });
 
   const [campingSpots, setCampingSpots] = useState(() => {
@@ -541,25 +465,25 @@ export const AppProvider = ({ children }) => {
     return Math.max(count, 1);
   });
 
-  // Base de données des réservations de camping (démarre vide sans mock data)
+  // Base de données des réservations de camping (Locale + API)
   const [campingReservations, setCampingReservations] = useState(() => {
     const local = localStorage.getItem('niayes_camping_reservations');
     return local ? JSON.parse(local) : [];
   });
 
-  // Base de données des inscriptions aux formations (démarre vide sans mock data)
+  // Base de données des inscriptions aux formations (Locale + API)
   const [trainingInscriptions, setTrainingInscriptions] = useState(() => {
     const local = localStorage.getItem('niayes_training_inscriptions');
     return local ? JSON.parse(local) : [];
   });
 
-  // Base de données des demandes de devis (démarre vide sans mock data)
+  // Base de données des demandes de devis (Locale + API)
   const [devisRequests, setDevisRequests] = useState(() => {
     const local = localStorage.getItem('niayes_devis_requests');
     return local ? JSON.parse(local) : [];
   });
 
-  // Commandes e-commerce (démarre vide sans mock data)
+  // Commandes e-commerce (Locale + API)
   const [shopOrders, setShopOrders] = useState(() => {
     const local = localStorage.getItem('niayes_shop_orders');
     return local ? JSON.parse(local) : [];
@@ -568,7 +492,98 @@ export const AppProvider = ({ children }) => {
   // Filtre géographique global de navigation
   const [activeFermeFilter, setActiveFermeFilter] = useState('all'); // 'all', 'mboro', 'ngaparou'
 
-  // Persistance dans le localStorage
+  // Référence pour empêcher les écritures pendant le chargement initial
+  const syncingRef = useRef(false);
+
+  // ─── Chargement initial depuis la base PostgreSQL ───
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadFromApi = async () => {
+      syncingRef.current = true;
+      try {
+        const [p, e, t, c, orders, res, ins, dev] = await Promise.allSettled([
+          api.plants.fetchAll(),
+          api.equipment.fetchAll(),
+          api.trainings.fetchAll(),
+          api.campingSpots.fetchAll(),
+          api.orders.fetchAll(),
+          api.reservations.fetchAll(),
+          api.inscriptions.fetchAll(),
+          api.devis.fetchAll(),
+        ]);
+
+        // Dans la base, on construit le catalogue final = données API (si dispo)
+        // sinon on garde les données locales (cache).
+        const apiPlants = p.status === 'fulfilled' ? p.value : null;
+        const apiEquip = e.status === 'fulfilled' ? e.value : null;
+        const apiTrainings = t.status === 'fulfilled' ? t.value : null;
+        const apiCamping = c.status === 'fulfilled' ? c.value : null;
+
+        if (cancelled) return;
+
+        if (apiPlants && apiPlants.length) {
+          setPlants((prev) => mergeDefaults(apiPlants, INITIAL_PLANTS, prev));
+        } else if (!apiPlants) {
+          // API injoignable : on garde le cache local
+        } else {
+          // API vide -> on initialise avec les données par défaut
+          setPlants(INITIAL_PLANTS);
+        }
+
+        if (apiEquip && apiEquip.length) {
+          setEquipment(apiEquip);
+        } else if (!apiEquip) {
+          // cache local
+        } else {
+          setEquipment(INITIAL_EQUIPMENT);
+        }
+
+        if (apiTrainings && apiTrainings.length) {
+          setTrainings(apiTrainings);
+        } else if (!apiTrainings) {
+          // cache local
+        } else {
+          setTrainings(INITIAL_TRAININGS);
+        }
+
+        if (apiCamping && apiCamping.length) {
+          setCampingSpots(apiCamping);
+        } else if (!apiCamping) {
+          // cache local
+        } else {
+          setCampingSpots(INITIAL_CAMPING_SPOTS);
+        }
+
+        if (orders.status === 'fulfilled') setShopOrders(orders.value);
+        if (res.status === 'fulfilled') setCampingReservations(res.value);
+        if (ins.status === 'fulfilled') setTrainingInscriptions(ins.value);
+        if (dev.status === 'fulfilled') setDevisRequests(dev.value);
+      } catch (err) {
+        console.warn('API injoignable, utilisation du cache local.', err);
+      } finally {
+        syncingRef.current = false;
+      }
+    };
+
+    loadFromApi();
+
+    return () => { cancelled = true; };
+  }, []);
+
+  // Fonction utilitaire : fusionner les données par défaut avec celles de l'API
+  function mergeDefaults(apiData, defaults, prev) {
+    const merged = [...apiData];
+    defaults.forEach((d) => {
+      if (!merged.some((x) => x.id === d.id)) {
+        merged.push(d);
+      }
+    });
+    // Si l'API a renvoyé des données, on les utilise (sinon le cache local)
+    return merged.length ? merged : prev;
+  }
+
+  // ── Persistance locale (cache) ──
   useEffect(() => {
     localStorage.setItem('niayes_plants', JSON.stringify(plants));
   }, [plants]);
@@ -605,6 +620,74 @@ export const AppProvider = ({ children }) => {
     localStorage.setItem('niayes_shop_orders', JSON.stringify(shopOrders));
   }, [shopOrders]);
 
+  // ── Synchronisation avec la base PostgreSQL ──
+  // À chaque modification du catalogue, on pousse les données vers l'API
+  // (sauf pendant le chargement initial).
+
+  useEffect(() => {
+    if (syncingRef.current) return;
+    const t = setTimeout(() => {
+      plants.forEach((item) => api.plants.add(item).catch(() => {}));
+    }, 400);
+    return () => clearTimeout(t);
+  }, [plants]);
+
+  useEffect(() => {
+    if (syncingRef.current) return;
+    const t = setTimeout(() => {
+      equipment.forEach((item) => api.equipment.add(item).catch(() => {}));
+    }, 400);
+    return () => clearTimeout(t);
+  }, [equipment]);
+
+  useEffect(() => {
+    if (syncingRef.current) return;
+    const t = setTimeout(() => {
+      trainings.forEach((item) => api.trainings.add(item).catch(() => {}));
+    }, 400);
+    return () => clearTimeout(t);
+  }, [trainings]);
+
+  useEffect(() => {
+    if (syncingRef.current) return;
+    const t = setTimeout(() => {
+      campingSpots.forEach((item) => api.campingSpots.add(item).catch(() => {}));
+    }, 400);
+    return () => clearTimeout(t);
+  }, [campingSpots]);
+
+  useEffect(() => {
+    if (syncingRef.current) return;
+    const t = setTimeout(() => {
+      campingReservations.forEach((item) => api.reservations.add(item).catch(() => {}));
+    }, 400);
+    return () => clearTimeout(t);
+  }, [campingReservations]);
+
+  useEffect(() => {
+    if (syncingRef.current) return;
+    const t = setTimeout(() => {
+      trainingInscriptions.forEach((item) => api.inscriptions.add(item).catch(() => {}));
+    }, 400);
+    return () => clearTimeout(t);
+  }, [trainingInscriptions]);
+
+  useEffect(() => {
+    if (syncingRef.current) return;
+    const t = setTimeout(() => {
+      devisRequests.forEach((item) => api.devis.add(item).catch(() => {}));
+    }, 400);
+    return () => clearTimeout(t);
+  }, [devisRequests]);
+
+  useEffect(() => {
+    if (syncingRef.current) return;
+    const t = setTimeout(() => {
+      shopOrders.forEach((item) => api.orders.add(item).catch(() => {}));
+    }, 400);
+    return () => clearTimeout(t);
+  }, [shopOrders]);
+
   // Actions Panier
   const addToCart = (item, type = 'plant') => {
     setCart((prev) => {
@@ -637,13 +720,19 @@ export const AppProvider = ({ children }) => {
     // Déduire les stocks
     cart.forEach((cartItem) => {
       if (cartItem.itemType === 'plant') {
-        setPlants((prev) =>
-          prev.map((p) => (p.id === cartItem.id ? { ...p, stock: Math.max(0, p.stock - cartItem.qty) } : p))
-        );
+        setPlants((prev) => {
+          const updated = prev.map((p) => (p.id === cartItem.id ? { ...p, stock: Math.max(0, p.stock - cartItem.qty) } : p));
+          const target = updated.find((p) => p.id === cartItem.id);
+          if (target) api.plants.update(target.id, target).catch(() => {});
+          return updated;
+        });
       } else {
-        setEquipment((prev) =>
-          prev.map((e) => (e.id === cartItem.id ? { ...e, stock: Math.max(0, e.stock - cartItem.qty) } : e))
-        );
+        setEquipment((prev) => {
+          const updated = prev.map((e) => (e.id === cartItem.id ? { ...e, stock: Math.max(0, e.stock - cartItem.qty) } : e));
+          const target = updated.find((e) => e.id === cartItem.id);
+          if (target) api.equipment.update(target.id, target).catch(() => {});
+          return updated;
+        });
       }
     });
 
@@ -658,6 +747,7 @@ export const AppProvider = ({ children }) => {
     };
 
     setShopOrders((prev) => [newOrder, ...prev]);
+    api.orders.add(newOrder).catch(() => {});
     clearCart();
     return newOrder.id;
   };
@@ -667,10 +757,13 @@ export const AppProvider = ({ children }) => {
     const selectedTraining = trainings.find((t) => t.id === trainingId);
     if (!selectedTraining) return null;
 
-    // Déduire 1 place disponible
-    setTrainings((prev) =>
-      prev.map((t) => (t.id === trainingId ? { ...t, availablePlaces: Math.max(0, t.availablePlaces - 1) } : t))
-    );
+// Déduire 1 place disponible
+    setTrainings((prev) => {
+      const updated = prev.map((t) => (t.id === trainingId ? { ...t, availablePlaces: Math.max(0, t.availablePlaces - 1) } : t));
+      const target = updated.find((t) => t.id === trainingId);
+      if (target) api.trainings.update(target.id, target).catch(() => {});
+      return updated;
+    });
 
     const price = selectedTraining.price;
     const toPay = option === 'deposit' ? price * 0.3 : price;
@@ -686,6 +779,7 @@ export const AppProvider = ({ children }) => {
     };
 
     setTrainingInscriptions((prev) => [newInscription, ...prev]);
+    api.inscriptions.add(newInscription).catch(() => {});
     return newInscription.id;
   };
 
@@ -708,6 +802,7 @@ export const AppProvider = ({ children }) => {
     };
 
     setCampingReservations((prev) => [newReservation, ...prev]);
+    api.reservations.add(newReservation).catch(() => {});
     return newReservation.id;
   };
 
@@ -726,6 +821,7 @@ export const AppProvider = ({ children }) => {
     };
 
     setDevisRequests((prev) => [newRequest, ...prev]);
+    api.devis.add(newRequest).catch(() => {});
     return newRequest.id;
   };
 
@@ -746,44 +842,53 @@ export const AppProvider = ({ children }) => {
     setCampingSpots((prev) => [...prev, { ...newSpot, id: 'c_' + Date.now() }]);
   };
 
-  const adminUpdatePlantStock = (id, newStock) => {
+const adminUpdatePlantStock = (id, newStock) => {
     setPlants((prev) => prev.map((p) => (p.id === id ? { ...p, stock: parseInt(newStock) || 0 } : p)));
+    api.plants.update(id, { stock: parseInt(newStock) || 0, id }).catch(() => {});
   };
 
-  const adminDeletePlant = (id) => {
+const adminDeletePlant = (id) => {
     setPlants((prev) => prev.filter((p) => p.id !== id));
+    api.plants.remove(id).catch(() => {});
   };
 
   const adminDeleteEquipment = (id) => {
     setEquipment((prev) => prev.filter((e) => e.id !== id));
+    api.equipment.remove(id).catch(() => {});
   };
 
   const adminDeleteTraining = (id) => {
     setTrainings((prev) => prev.filter((t) => t.id !== id));
+    api.trainings.remove(id).catch(() => {});
   };
 
   const adminDeleteCampingSpot = (id) => {
     setCampingSpots((prev) => prev.filter((c) => c.id !== id));
+    api.campingSpots.remove(id).catch(() => {});
   };
 
   const adminUpdateDevisStatut = (id, newStatut) => {
     setDevisRequests((prev) => prev.map((d) => (d.id === id ? { ...d, statut: newStatut } : d)));
   };
 
-  const adminUpdatePlant = (id, updatedPlant) => {
+const adminUpdatePlant = (id, updatedPlant) => {
     setPlants((prev) => prev.map((p) => (p.id === id ? { ...p, ...updatedPlant } : p)));
+    api.plants.update(id, { ...updatedPlant, id }).catch(() => {});
   };
 
   const adminUpdateEquipment = (id, updatedEquipment) => {
     setEquipment((prev) => prev.map((e) => (e.id === id ? { ...e, ...updatedEquipment } : e)));
+    api.equipment.update(id, { ...updatedEquipment, id }).catch(() => {});
   };
 
   const adminUpdateTraining = (id, updatedTraining) => {
     setTrainings((prev) => prev.map((t) => (t.id === id ? { ...t, ...updatedTraining } : t)));
+    api.trainings.update(id, { ...updatedTraining, id }).catch(() => {});
   };
 
   const adminUpdateCampingSpot = (id, updatedSpot) => {
     setCampingSpots((prev) => prev.map((c) => (c.id === id ? { ...c, ...updatedSpot } : c)));
+    api.campingSpots.update(id, { ...updatedSpot, id }).catch(() => {});
   };
 
   return (
