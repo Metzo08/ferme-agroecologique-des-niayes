@@ -48,7 +48,7 @@ function createCrudRoutes(table, key, normalize) {
       const cols = Object.keys(data).filter((k) => k !== 'id');
       const values = cols.map((c) => data[c]);
       const placeholders = cols.map((_, i) => `$${i + 2}`).join(', ');
-      const setCols = cols.join(', ');
+      const setCols = cols.map((c) => `"${c}"`).join(', ');
       await pool.query(
         `INSERT INTO "${table}" ("id", ${setCols}) VALUES ($1, ${placeholders}) ON CONFLICT ("id") DO NOTHING`,
         [id, ...values]
