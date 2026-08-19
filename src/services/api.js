@@ -7,7 +7,8 @@
 //                   (ex: https://ferme-niayes-api.onrender.com)
 // =====================================================
 
-const BASE = import.meta.env.VITE_API_URL || '/api';
+let BASE = (import.meta.env.VITE_API_URL || '/api').replace(/\/+$/, '');
+if (!BASE.endsWith('/api')) BASE += '/api';
 
 let adminToken = localStorage.getItem('ferme_admin_token') || null;
 
