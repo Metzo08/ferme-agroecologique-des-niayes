@@ -498,8 +498,10 @@ export const AppProvider = ({ children }) => {
   // ─── Chargement initial depuis la base PostgreSQL ───
   useEffect(() => {
     let cancelled = false;
+    let retryTimer = null;
+    let pollTimer = null;
 
-    const loadFromApi = async () => {
+    const applyApiData = async () => {
       syncingRef.current = true;
       try {
         const [p, e, t, c, orders, res, ins, dev] = await Promise.allSettled([
@@ -559,16 +561,43 @@ export const AppProvider = ({ children }) => {
         if (res.status === 'fulfilled') setCampingReservations(res.value);
         if (ins.status === 'fulfilled') setTrainingInscriptions(ins.value);
         if (dev.status === 'fulfilled') setDevisRequests(dev.value);
+
+        return p.status === 'fulfilled';
       } catch (err) {
         console.warn('API injoignable, utilisation du cache local.', err);
+        return false;
       } finally {
         syncingRef.current = false;
       }
     };
 
+    const retryDelays = [10000, 20000, 40000];
+
+    const loadFromApi = async () => {
+      let ok = await applyApiData();
+      // Réveil Render (~50s) : réessayer si le premier chargement a échoué
+      for (let i = 0; !ok && !cancelled && i < retryDelays.length; i++) {
+        await new Promise((r) => setTimeout(r, retryDelays[i]));
+        if (cancelled) return;
+        ok = await applyApiData();
+      }
+    };
+
     loadFromApi();
 
-    return () => { cancelled = true; };
+    // Rafraîchissement automatique : toutes les 60s tant que l'onglet est visible
+    const refreshIfVisible = () => {
+      if (document.visibilityState === 'visible') applyApiData();
+    };
+    pollTimer = setInterval(refreshIfVisible, 60000);
+    document.addEventListener('visibilitychange', refreshIfVisible);
+
+    return () => {
+      cancelled = true;
+      clearTimeout(retryTimer);
+      clearInterval(pollTimer);
+      document.removeEventListener('visibilitychange', refreshIfVisible);
+    };
   }, []);
 
   // Fonction utilitaire : fusionner les données par défaut avec celles de l'API
